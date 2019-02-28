@@ -5,7 +5,6 @@ import { InvalidAssessmentStatusException } from '../exceptions/invalid-assessme
 @Injectable()
 export class AssessmentScoringHelper {
   /**
-   * When documenting function make sure it provides useful information and not only signature details.
    *
    * Calculates the assessment scored considering its status. Active assessments score is
    * hardcoded to 10. Closed assessments can not be scored.
@@ -18,7 +17,7 @@ export class AssessmentScoringHelper {
       throw new InvalidAssessmentStatusException('The assessment is closed');
     }
     return assessment.isActive()
-      ? 10 // inline comments should be avoided, use them when strictly necessary.
-      : 5 * Math.pow(2, 10); // add a comment like this explaining non trivial details
+      ? 10
+      : 5 * Math.pow(2, 10); // applying a math formula for non active assessment
   }
 }

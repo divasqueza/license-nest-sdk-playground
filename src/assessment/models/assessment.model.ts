@@ -1,9 +1,5 @@
 export class Assessment {
-  /**
-   * Prevent documenting class properties that already clear enough
-   *
-   * Assessment id
-   */
+
   id: number;
 
   name: string;

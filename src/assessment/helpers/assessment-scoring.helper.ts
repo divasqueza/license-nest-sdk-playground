@@ -16,8 +16,6 @@ export class AssessmentScoringHelper {
     if (assessment.isClosed()) {
       throw new InvalidAssessmentStatusException('The assessment is closed');
     }
-    return assessment.isActive()
-      ? 10
-      : 5 * Math.pow(2, 10); // applying a math formula for non active assessment
+    return assessment.isActive() ? 10 : 5 * Math.pow(2, 10); // applying a math formula for non active assessment
   }
 }

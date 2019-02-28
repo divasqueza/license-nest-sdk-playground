@@ -3,6 +3,12 @@ import { Assessment } from '../models/assessment.model';
 import { AssessmentService } from '../services/assessment.service';
 import { InternalAssessmentGuard } from '../guards/internal-assessment.guard';
 
+/**
+ * Manages the assessments CRUD operations. It only supports/handles internal assessment types.
+ *
+ * @see {InternalAssessmentGuard}
+ * @author javier.perez
+ */
 @Controller('assessments')
 @UseGuards(InternalAssessmentGuard)
 export class AssessmentController {

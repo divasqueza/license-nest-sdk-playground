@@ -6,6 +6,13 @@ import { AssessmentRepository } from './repositories/assessment.repository';
 import { InternalAssessmentGuard } from './guards/internal-assessment.guard';
 import { AssessmentScoringHelper } from './helpers/assessment-scoring.helper';
 
+/**
+ * This module encapsulate all assessment related functionality, it handles CRUD operations but also assessment scoring
+ * and delivery logic.
+ * It encapsulates assessment data repositories but exposes some of the assessment services.
+ *
+ * @author javier.perez
+ */
 @Module({
   providers: [
     InternalAssessmentGuard,

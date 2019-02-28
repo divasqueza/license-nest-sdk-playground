@@ -2,6 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { AssessmentRepository } from '../repositories/assessment.repository';
 import { Assessment } from '../models/assessment.model';
 
+/**
+ * Services just like any other component should be briefly documented explaining its intention, you can some high level
+ * implementation details if necessary.
+ *
+ * @see {@link ./AssessmentScoringService}
+ * @author javier.perez
+ */
 @Injectable()
 export class AssessmentService {
   constructor(private readonly assessmentRepository: AssessmentRepository) {}

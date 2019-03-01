@@ -38,14 +38,7 @@ try {
     } catch(caughtError) {
         currentBuild.result = "FAILURE"
         throw caughtError
-    }
-
-    if (branch.contains('develop')) {
-        uploadArtifactStage( artifactsRepoParams.groupId, artifactsRepoParams.repo, artifactsRepoParams.artifactId, appParams.exportPath, appParams.type, appParams.artifact)
-    }
-    else {
-      echo "Other stages per branch"
-    }
+    }  
   }
 }
 catch(caughtError) {

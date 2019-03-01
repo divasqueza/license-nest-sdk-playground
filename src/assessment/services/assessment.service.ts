@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { AssessmentRepository } from '../repositories/assessment.repository';
 import { Assessment } from '../models/assessment.model';
 import { AssessmentConfiguration } from '../configuration/assessment.configuration';
+import { ApplicationLoggerService } from '../../logger/services/application-logger.service';
 
 /**
  * Services just like any other component should be briefly documented explaining its intention, you can some high level
@@ -15,11 +16,18 @@ export class AssessmentService {
   constructor(
     private readonly assessmentRepository: AssessmentRepository,
     private readonly assessmentConfiguration: AssessmentConfiguration,
+    private readonly loggerService: ApplicationLoggerService,
   ) {}
 
   async create(assessment: Assessment): Promise<Assessment> {
     if (!assessment.idleTimeout) {
-      assessment.idleTimeout = this.assessmentConfiguration.idleTimeout();
+      const idleTimeout = this.assessmentConfiguration.idleTimeout();
+      assessment.idleTimeout = idleTimeout;
+
+      this.loggerService.info(
+        AssessmentService.name,
+        `Using default idle timeout ${idleTimeout}`,
+      );
     }
     return this.assessmentRepository.save(assessment);
   }

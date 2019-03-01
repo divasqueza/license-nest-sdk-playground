@@ -6,6 +6,6 @@ import { NestLoggerService } from './logger/services/nest-logger.service';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useLogger(app.get(NestLoggerService));
-  await app.listen(app.get(ApplicationConfiguration).port());
+  await app.listen(app.get(ApplicationConfiguration).port);
 }
 bootstrap();

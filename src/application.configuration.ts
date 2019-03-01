@@ -11,7 +11,7 @@ import { ConfigurationService } from './configuration/services/configuration.ser
 export class ApplicationConfiguration {
   constructor(private readonly configuration: ConfigurationService) {}
 
-  port(): number {
+  get port(): number {
     const port = this.configuration.get('PORT');
     return port ? +port : 3000;
   }

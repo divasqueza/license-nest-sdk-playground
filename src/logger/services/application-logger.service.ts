@@ -47,13 +47,13 @@ export class ApplicationLoggerService {
     const loggerTransports = production
       ? [
           new transports.File({
-            filename: loggerConfiguration.loggerOutputFile(),
+            filename: loggerConfiguration.loggerOutputFile,
           }),
         ] // TODO use a daily rotate logger
       : [new transports.Console()];
 
     return createLogger({
-      level: loggerConfiguration.rootLevel(),
+      level: loggerConfiguration.rootLevel,
       transports: loggerTransports,
       format: format.combine(
         format.timestamp(),

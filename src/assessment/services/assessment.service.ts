@@ -21,7 +21,7 @@ export class AssessmentService {
 
   async create(assessment: Assessment): Promise<Assessment> {
     if (!assessment.idleTimeout) {
-      const idleTimeout = this.assessmentConfiguration.idleTimeout();
+      const idleTimeout = this.assessmentConfiguration.idleTimeout;
       assessment.idleTimeout = idleTimeout;
 
       this.loggerService.info(

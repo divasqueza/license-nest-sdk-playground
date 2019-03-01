@@ -5,7 +5,7 @@ import { Injectable } from '@nestjs/common';
 export class LoggerConfiguration {
   constructor(private readonly configuration: ConfigurationService) {}
 
-  rootLevel() {
+  get rootLevel(): string {
     return this.configuration.get('LOGGER_ROOT_LEVEL') || 'info';
   }
 
@@ -13,7 +13,7 @@ export class LoggerConfiguration {
    * Full path to the logger output file. Used by the default file transport
    * @returns {string | string}
    */
-  loggerOutputFile() {
+  get loggerOutputFile(): string {
     return this.configuration.get('LOGGER_FILE_NAME') || 'application.log';
   }
 }

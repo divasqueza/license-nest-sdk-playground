@@ -8,7 +8,8 @@ try {
 
     def appParams = [
       name                  : 'dp-nestjs-template',
-      buildSdk              : 'nest',
+      buildSdk              : 'nestjs/cli',   //  <<<---- These parameters are for the case where the app is build with different nodejs versions
+      versionSdk            : '8.9.0',        //  <<<----
       deploymentTag         : 'DEV',
       type                  : 'zip',
       artifact              : 'dp-nestjs',
@@ -34,11 +35,12 @@ try {
     try {
 
       unitTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
+      unitTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
 
     } catch(caughtError) {
         currentBuild.result = "FAILURE"
         throw caughtError
-    }  
+    }
   }
 }
 catch(caughtError) {
@@ -47,6 +49,12 @@ catch(caughtError) {
 }
 finally {
     echo " notifyBuild"
+}
+
+def ansiMessage(message) {
+  ansiColor('xterm') {
+    echo "\u001B[37m ${message} \u001B[0m"
+  }
 }
 
 def checkoutStage( appName, repository, branch) {
@@ -77,9 +85,21 @@ def unitTestingStage(buildSdk, exportPath, buildsArgs) {
             cd $WORKSPACE/
             set -o pipefail
             IFS=$'\n\t'
-            npm run test
+            npm run test:unit
          """
       ansiMessage("\u2713 Unit Testing DONE")
+    }
+}
+
+def integrationTestingStage(buildSdk, exportPath, buildsArgs) {
+    stage('\u27A1 Integration Testing') {
+      sh """
+            cd $WORKSPACE/
+            set -o pipefail
+            IFS=$'\n\t'
+            npm run test:integration
+         """
+      ansiMessage("\u2713 Integration Testing DONE")
     }
 }
 

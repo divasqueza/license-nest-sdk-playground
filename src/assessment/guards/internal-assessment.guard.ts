@@ -1,4 +1,5 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { AssessmentConfiguration } from '../configuration/assessment.configuration';
 
 /**
  * This guard is used to make sure api calls are only receiving internal assessments, other assessments
@@ -8,8 +9,14 @@ import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
  */
 @Injectable()
 export class InternalAssessmentGuard implements CanActivate {
+  constructor(
+    private readonly assessmentConfiguration: AssessmentConfiguration,
+  ) {}
+
   canActivate(context: ExecutionContext): boolean | Promise<boolean> {
-    // TODO check it is an internal assessment
-    return true;
+    const isInternal = true; // TODO check it is an internal assessment
+    return (
+      isInternal || this.assessmentConfiguration.allowExternalAssessments()
+    );
   }
 }

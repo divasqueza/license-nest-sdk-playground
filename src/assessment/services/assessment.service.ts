@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AssessmentRepository } from '../repositories/assessment.repository';
 import { Assessment } from '../models/assessment.model';
+import { AssessmentConfiguration } from '../configuration/assessment.configuration';
 
 /**
  * Services just like any other component should be briefly documented explaining its intention, you can some high level
@@ -11,10 +12,15 @@ import { Assessment } from '../models/assessment.model';
  */
 @Injectable()
 export class AssessmentService {
-  constructor(private readonly assessmentRepository: AssessmentRepository) {}
+  constructor(
+    private readonly assessmentRepository: AssessmentRepository,
+    private readonly assessmentConfiguration: AssessmentConfiguration,
+  ) {}
 
   async create(assessment: Assessment): Promise<Assessment> {
-    // do some other logic here, like throwing an event, calling other services, repositories, helpers, etc
+    if (!assessment.idleTimeout) {
+      assessment.idleTimeout = this.assessmentConfiguration.idleTimeout();
+    }
     return this.assessmentRepository.save(assessment);
   }
 

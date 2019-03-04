@@ -4,14 +4,14 @@ import { AssessmentService } from './assessment.service';
 import { AssessmentScoringHelper } from '../helpers/assessment-scoring.helper';
 
 /**
- * The AssessmentDeliveryService is in charge of calculating scores for different assessment types, base
+ * The AssessmentScoringService is in charge of calculating scores for different assessment types, base
  * on different algorithms.
  *
  *
  * @author javier.perez
  */
 @Injectable()
-export class AssessmentDeliveryService {
+export class AssessmentScoringService {
   constructor(
     private readonly assessmentService: AssessmentService,
     private readonly assessmentScoringHelper: AssessmentScoringHelper,

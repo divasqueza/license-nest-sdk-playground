@@ -22,7 +22,7 @@ describe('AssessmentController', () => {
   });
 
   it('findAll', async () => {
-    const assessment = new Assessment();
+    const assessment = new Assessment({ id: 10 });
     const assessmentServiceMock = mock<AssessmentService>({
       findAll: jest.fn().mockResolvedValue([assessment]),
     });

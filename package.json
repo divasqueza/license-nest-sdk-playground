@@ -13,16 +13,20 @@
     "prestart:prod": "rimraf dist && npm run build",
     "start:prod": "node dist/main.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
-    "test": "jest --config ./test/jest.config.js",
-    "test:cov": "jest --coverage --config ./test/jest.config.js",
-    "test:watch": "jest --watch --config ./test/jest.config.js",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:ci": "jest --ci --silent --reporters=jest-junit",
+    "test:ci:cov": "jest --ci --silent --coverageReporters=lcov --coverage"
+
   },
   "dependencies": {
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
     "@types/nconf": "^0.10.0",
     "@types/winston": "^2.4.4",
+
     "nconf": "^0.10.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
@@ -37,6 +41,7 @@
     "@types/node": "^10.7.1",
     "@types/supertest": "^2.0.5",
     "jest": "^23.5.0",
+    "jest-junit": "^6.3.0",
     "nodemon": "^1.18.3",
     "prettier": "^1.14.2",
     "supertest": "^3.1.0",

@@ -16,6 +16,6 @@ export class InternalAssessmentGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean | Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const user = request.user;
-    return user || this.assessmentConfiguration.allowExternalAssessments;
+    return user || this.assessmentConfiguration.freeForAll;
   }
 }

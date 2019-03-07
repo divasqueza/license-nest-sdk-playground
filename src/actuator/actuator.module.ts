@@ -1,5 +1,6 @@
-import { Global, Module } from '@nestjs/common';
+import { DynamicModule, Module, Type } from '@nestjs/common';
 import { ApplicationMiddlewareHelper } from './helper/application-middleware.helper';
+import { ActuatorController } from './controllers/actuator.controller';
 
 /**
  * This module provides common functionality for web applications
@@ -7,9 +8,20 @@ import { ApplicationMiddlewareHelper } from './helper/application-middleware.hel
  *
  * @javier.perez
  */
-@Global()
-@Module({
-  providers: [ApplicationMiddlewareHelper],
-  exports: [ApplicationMiddlewareHelper],
-})
-export class ActuatorModule {}
+
+@Module({})
+export class ActuatorModule {
+  static forRoot(options?: {
+    actuatorToken?: Type<any> | string;
+  }): DynamicModule {
+    return {
+      module: ActuatorModule,
+      providers: [
+        ApplicationMiddlewareHelper,
+        { provide: 'ActuatorToken', useValue: options.actuatorToken },
+      ],
+      exports: [ApplicationMiddlewareHelper],
+      controllers: [ActuatorController],
+    };
+  }
+}

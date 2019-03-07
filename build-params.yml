@@ -1,0 +1,23 @@
+---
+develop:
+  suiteTestRepo: git@github.com:greatmindsorg/dp-nestjs-automation.git
+  suiteTestSmokeName: SmokeSuite
+  suiteTestRegressionName: RegressionSuite
+  suiteTestBranch: develop
+  filePath: build/release/nestjs-template.zip
+  repositoryApp: nestjs-template.zip
+  repositoryGroupId: org.gm.ms
+  repositoryType: zip
+  repositoryRepo: nestjs-template-dev
+  emailRecipients: jenkins@greatminds.org
+default:
+  suiteTestRepo: git@github.com:greatmindsorg/dp-nestjs-automation.git
+  suiteTestSmokeName: SmokeSuite
+  suiteTestRegressionName: RegressionSuite
+  suiteTestBranch: develop
+  filePath: build/release/nestjs-template.zip
+  repositoryApp: nestjs-template.zip
+  repositoryGroupId: org.gm.ms
+  repositoryType: zip
+  repositoryRepo: nestjs-template-dev
+  emailRecipients: jenkins@greatminds.org

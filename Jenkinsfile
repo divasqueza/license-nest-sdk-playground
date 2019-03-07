@@ -8,15 +8,12 @@ try {
     /**
      * Read file YML with the configuration by branch.
      */
-
     def buildParamsConfiguration = readYaml file: 'build-params.yml'
-
     def properties = buildParamsConfiguration["${branch}"]
 
     /**
      * Next pipeline parameters are just for testing purposes.
      */
-
     def appParams = [
       name                  : 'dp-nestjs-template',
       buildSdk              : 'nestjs/cli',   //  <<<---- These parameters are for the case where the app is build with different nodejs versions
@@ -42,14 +39,19 @@ try {
 
     buildStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
 
+    unitTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
+
     try {
 
-      if() {
-      unitTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
-      integrationTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
+      if (branch.contains('develop')) {
+
+        integrationTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
+        
       }
     } catch(caughtError) {
+
         currentBuild.result = "FAILURE"
+
         throw caughtError
     }
   }

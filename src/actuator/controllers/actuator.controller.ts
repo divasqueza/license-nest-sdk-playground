@@ -19,27 +19,30 @@ export class ActuatorController implements OnModuleInit {
 
   @Get('health')
   health() {
-    const indicators = this.actuator.check();
+    const indicators = this.actuator.getHealthIndicators();
+    const up = !indicators.filter(indicator => !indicator.up).length;
     return {
-      status: indicators.length ? 'down' : 'up',
+      status: up ? 'down' : 'up',
       indicators,
     };
   }
 
   @Get('info')
   info() {
-    return this.actuator.getApplicationInfo();
+    return { info: this.actuator.getApplicationInfo() };
   }
 
   @Get('metrics')
   metrics() {
     return {
-      // TODO define metrics to share
-      cpus: os.cpus(),
-      uptime: os.uptime(),
-      mem: {
-        total: os.totalmem(),
-        free: os.freemem(),
+      metrics: {
+        // TODO define metrics to share
+        cpus: os.cpus(),
+        uptime: os.uptime(),
+        mem: {
+          total: os.totalmem(),
+          free: os.freemem(),
+        },
       },
     };
   }

@@ -7,7 +7,7 @@ export interface Actuator {
    *
    * @returns {HealthIndicator[]}
    */
-  check(): HealthIndicator[];
+  getHealthIndicators(): HealthIndicator[];
 
   /**
    * Retrieves the application information

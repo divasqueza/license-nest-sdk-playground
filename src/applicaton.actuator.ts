@@ -10,7 +10,7 @@ export class ApplicationActuator implements Actuator {
     private readonly applicationConfiguration: ApplicationConfiguration,
   ) {}
 
-  check(): HealthIndicator[] {
+  getHealthIndicators(): HealthIndicator[] {
     // TODO add logic here to verify database connection, SQS or other key app services.
     return this.applicationConfiguration.actuatorEnabled
       ? [
@@ -18,6 +18,10 @@ export class ApplicationActuator implements Actuator {
             name: 'mysql.assessment',
             up: false,
             reason: 'Connection timeout',
+            extra: {
+              status: 502,
+              message: 'Gateway timeout',
+            },
           }),
           new HealthIndicator({
             name: 'content.delivery.service',

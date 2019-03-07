@@ -1,21 +1,16 @@
-import { Controller, Get, Inject, OnModuleInit, Type } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { Actuator } from '../actuator.interface';
-import { ModuleRef } from '@nestjs/core';
 import * as os from 'os';
+import { FactoryHelper } from '../helper/factory.helper';
 
 @Controller('actuator')
-export class ActuatorController implements OnModuleInit {
-  private actuator: Actuator;
+export class ActuatorController {
 
-  constructor(
-    private readonly moduleRef: ModuleRef,
-    @Inject('ActuatorToken')
-    private readonly actuatorToken: Type<any> | string | symbol,
-  ) {}
-
-  onModuleInit() {
-    this.actuator = this.moduleRef.get(this.actuatorToken, { strict: false });
+  get actuator(): Actuator {
+    return this.factoryHelper.instance;
   }
+
+  constructor(private readonly factoryHelper: FactoryHelper<Actuator>) {}
 
   @Get('health')
   health() {

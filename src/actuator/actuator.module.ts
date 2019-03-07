@@ -1,6 +1,8 @@
 import { DynamicModule, Module, Type } from '@nestjs/common';
 import { ApplicationMiddlewareHelper } from './helper/application-middleware.helper';
 import { ActuatorController } from './controllers/actuator.controller';
+import { FactoryHelper } from './helper/factory.helper';
+import { ModuleRef } from '@nestjs/core';
 
 /**
  * This module provides common functionality for web applications
@@ -18,7 +20,11 @@ export class ActuatorModule {
       module: ActuatorModule,
       providers: [
         ApplicationMiddlewareHelper,
-        { provide: 'ActuatorToken', useValue: options.actuatorToken },
+        {
+          provide: FactoryHelper,
+          useFactory: (moduleRef: ModuleRef) => new FactoryHelper(moduleRef, options.actuatorToken),
+          inject: [ModuleRef],
+        },
       ],
       exports: [ApplicationMiddlewareHelper],
       controllers: [ActuatorController],

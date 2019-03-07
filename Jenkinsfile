@@ -1,7 +1,8 @@
 #!/usr/bin/env groovy
 
 try {
-  node('linux') {
+
+  node {
 
     def branch            = env.BRANCH_NAME
 
@@ -46,7 +47,7 @@ try {
       if (branch.contains('develop')) {
 
         integrationTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
-        
+
       }
     } catch(caughtError) {
 

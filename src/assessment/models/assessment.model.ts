@@ -14,6 +14,8 @@ export class Assessment {
    */
   score: number;
 
+  idleTimeout: number;
+
   hasScore() {
     return !!this.score;
   }
@@ -35,5 +37,6 @@ export class Assessment {
     this.name = assessment.name;
     this.status = assessment.status;
     this.score = assessment.score;
+    this.idleTimeout = assessment.idleTimeout;
   }
 }

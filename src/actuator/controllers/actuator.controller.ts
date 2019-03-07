@@ -1,15 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
 import { Actuator } from '../actuator.interface';
 import * as os from 'os';
-import { LocatorHelper } from '../helper/locator.helper';
+import { TokenProviderLocator } from '../locator/token-provider.locator';
 
 @Controller('actuator')
 export class ActuatorController {
   get actuator(): Actuator {
-    return this.locator.actuator;
+    return this.locator.get();
   }
 
-  constructor(private readonly locator: LocatorHelper) {}
+  constructor(
+    @Inject('ActuatorProviderLocator')
+    private readonly locator: TokenProviderLocator<Actuator>,
+  ) {}
 
   @Get('health')
   health() {

@@ -1,4 +1,5 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Response } from 'express';
+import { Controller, Get, HttpStatus, Inject, Res } from '@nestjs/common';
 import { Actuator } from '../actuator.interface';
 import * as os from 'os';
 import { TokenProviderLocator } from '../locator/token-provider.locator';
@@ -15,13 +16,13 @@ export class ActuatorController {
   ) {}
 
   @Get('health')
-  health() {
+  health(@Res() response: Response) {
     const indicators = this.actuator.getHealthIndicators();
     const up = !indicators.filter(indicator => !indicator.up).length;
-    return {
+    response.status(up ? HttpStatus.OK : HttpStatus.SERVICE_UNAVAILABLE).json({
       status: up ? 'down' : 'up',
       indicators,
-    };
+    });
   }
 
   @Get('info')

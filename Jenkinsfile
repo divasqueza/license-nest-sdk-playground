@@ -25,6 +25,13 @@ try {
       groupId               : 'org.greatminds.dp.nodejs.nestjs'
     ]
 
+    /**
+     * Read file YML with the configuration by branch.
+     */
+
+    def buildParamsConfiguration = readYaml file: 'build-params.yml'
+
+    def properties = buildParamsConfiguration["${branch}"]
 
     notifyBuild('STARTED')
 
@@ -34,9 +41,10 @@ try {
 
     try {
 
+      if() {
       unitTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
-      unitTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
-
+      integrationTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
+      }
     } catch(caughtError) {
         currentBuild.result = "FAILURE"
         throw caughtError
@@ -72,7 +80,6 @@ def buildStage(buildSdk, exportPath, buildArgs) {
       sh """
             cd $WORKSPACE/
             set -euo pipefail
-            IFS=$'\n\t'
             npm run dev
          """
          ansiMessage("\u2713 Build DONE")
@@ -84,7 +91,6 @@ def unitTestingStage(buildSdk, exportPath, buildsArgs) {
       sh """
             cd $WORKSPACE/
             set -o pipefail
-            IFS=$'\n\t'
             npm run test:unit
          """
       ansiMessage("\u2713 Unit Testing DONE")
@@ -96,7 +102,6 @@ def integrationTestingStage(buildSdk, exportPath, buildsArgs) {
       sh """
             cd $WORKSPACE/
             set -o pipefail
-            IFS=$'\n\t'
             npm run test:integration
          """
       ansiMessage("\u2713 Integration Testing DONE")
@@ -124,7 +129,7 @@ def notifyBuild(String buildStatus = 'STARTED') {
         attachLog: true,
         body: details,
         mimeType: 'text/html',
-        to: 'yanelly.jimenez@greatminds.org',
+        to: '${properties.emailRecipients}',
         replyTo: env.DEFAULT_REPLYTO,
         subject: subject
     )

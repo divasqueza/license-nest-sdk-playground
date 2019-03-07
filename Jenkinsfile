@@ -4,7 +4,18 @@ try {
   node('linux') {
 
     def branch            = env.BRANCH_NAME
-    def releaseNotes
+
+    /**
+     * Read file YML with the configuration by branch.
+     */
+
+    def buildParamsConfiguration = readYaml file: 'build-params.yml'
+
+    def properties = buildParamsConfiguration["${branch}"]
+
+    /**
+     * Next pipeline parameters are just for testing purposes.
+     */
 
     def appParams = [
       name                  : 'dp-nestjs-template',
@@ -24,14 +35,6 @@ try {
       artifactId            : 'dp-nestjs',
       groupId               : 'org.greatminds.dp.nodejs.nestjs'
     ]
-
-    /**
-     * Read file YML with the configuration by branch.
-     */
-
-    def buildParamsConfiguration = readYaml file: 'build-params.yml'
-
-    def properties = buildParamsConfiguration["${branch}"]
 
     notifyBuild('STARTED')
 

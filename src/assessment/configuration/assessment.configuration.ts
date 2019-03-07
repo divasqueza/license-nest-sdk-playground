@@ -11,12 +11,12 @@ import { ConfigurationService } from '../../configuration/services/configuration
 export class AssessmentConfiguration {
   constructor(private readonly configuration: ConfigurationService) {}
 
-  allowExternalAssessments(): boolean {
+  get allowExternalAssessments(): boolean {
     // for this example the configuration module only handles strings and environment variables
     return this.configuration.get('ALLOW_EXTERNAL_ASSESSMENTS') === 'true';
   }
 
-  idleTimeout(): number {
+  get idleTimeout(): number {
     const assessmentIdleTimeout = this.configuration.get(
       'ASSESSMENT_IDLE_TIMEOUT',
     );

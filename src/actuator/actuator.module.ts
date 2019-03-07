@@ -21,7 +21,7 @@ export class ActuatorModule {
       providers: [
         ApplicationMiddlewareHelper,
         {
-          provide: FactoryHelper,
+          provide: 'ActuatorFactoryHelper',
           useFactory: (moduleRef: ModuleRef) => new FactoryHelper(moduleRef, options.actuatorToken),
           inject: [ModuleRef],
         },

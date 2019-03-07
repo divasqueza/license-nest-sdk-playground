@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
 import { Actuator } from '../actuator.interface';
 import * as os from 'os';
 import { FactoryHelper } from '../helper/factory.helper';
@@ -10,7 +10,7 @@ export class ActuatorController {
     return this.factoryHelper.instance;
   }
 
-  constructor(private readonly factoryHelper: FactoryHelper<Actuator>) {}
+  constructor(@Inject('ActuatorFactoryHelper') private readonly factoryHelper: FactoryHelper<Actuator>) {}
 
   @Get('health')
   health() {

@@ -8,6 +8,7 @@ import { InternalAssessmentGuard } from '../../../dist/assessment/guards/interna
 import { ConfigurationModule } from '../../configuration/configuration.module';
 import { AssessmentModule } from '../assessment.module';
 import Mock = jest.Mock;
+import { InvalidAssessmentStatusException } from '../exceptions/invalid-assessment-status.exception';
 
 describe('AssessmentController - e2e', () => {
   let app: INestApplication;
@@ -74,6 +75,24 @@ describe('AssessmentController - e2e', () => {
         const data = response.body;
         expect(data.error).toBe('Forbidden');
         expect(data.message).toBe('Forbidden resource');
+      });
+  });
+
+  it(`/GET findAll when throwing InvalidAssessmentStatusException`, async () => {
+    (assessmentServiceMock.findAll as Mock).mockImplementation(() => {
+      throw new InvalidAssessmentStatusException('Assessment is clsoed');
+    });
+    (internalAssessmentGuardMock.canActivate as Mock).mockReturnValue(true);
+
+    await request(app.getHttpServer())
+      .get('/assessments')
+      .set('Accept', 'application/json')
+      .expect(400)
+      .then(response => {
+        const data = response.body;
+        expect(data.statusCode).toBeDefined();
+        expect(data.path).toBeDefined();
+        expect(data.timestamp).toBeDefined();
       });
   });
 

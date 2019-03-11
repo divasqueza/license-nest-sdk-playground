@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AssessmentDeliveryService } from './services/assessment-scoring.service';
+import { AssessmentScoringService } from './services/assessment-scoring.service';
 import { AssessmentController } from './controllers/assessment.controller';
 import { AssessmentService } from './services/assessment.service';
 import { AssessmentRepository } from './repositories/assessment.repository';
@@ -19,11 +19,11 @@ import { AssessmentConfiguration } from './configuration/assessment.configuratio
     InternalAssessmentGuard,
     AssessmentScoringHelper,
     AssessmentRepository,
-    AssessmentDeliveryService,
+    AssessmentScoringService,
     AssessmentService,
     AssessmentConfiguration,
   ],
   controllers: [AssessmentController],
-  exports: [AssessmentService, AssessmentDeliveryService],
+  exports: [AssessmentService, AssessmentScoringService],
 })
 export class AssessmentModule {}

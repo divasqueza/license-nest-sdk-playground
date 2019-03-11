@@ -10,7 +10,7 @@ export class Assessment {
   status: string; // TODO create assessment status enumeration.
 
   /**
-   * It holds the assessment score, -1 or empty means that the assessment has not been scored
+   * It holds the assessment score, 0 or empty means that the assessment has not been scored
    */
   score: number;
 
@@ -32,7 +32,7 @@ export class Assessment {
     return this.status === 'in-progress';
   }
 
-  constructor(assessment?: Partial<Assessment>) {
+  constructor(assessment: Partial<Assessment> = {}) {
     this.id = assessment.id;
     this.name = assessment.name;
     this.status = assessment.status;

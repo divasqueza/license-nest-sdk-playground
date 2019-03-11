@@ -14,7 +14,8 @@ export class InternalAssessmentGuard implements CanActivate {
   ) {}
 
   canActivate(context: ExecutionContext): boolean | Promise<boolean> {
-    const isInternal = true; // TODO check it is an internal assessment
-    return isInternal || this.assessmentConfiguration.allowExternalAssessments;
+    const request = context.switchToHttp().getRequest();
+    const user = request.user;
+    return user || this.assessmentConfiguration.allowExternalAssessments;
   }
 }

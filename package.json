@@ -19,14 +19,12 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:ci": "jest --ci --silent --reporters=jest-junit",
     "test:ci:cov": "jest --ci --silent --coverageReporters=lcov --coverage"
-
   },
   "dependencies": {
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
     "@types/nconf": "^0.10.0",
     "@types/winston": "^2.4.4",
-
     "nconf": "^0.10.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",

@@ -21,12 +21,11 @@ export class AssessmentService {
 
   async create(assessment: Assessment): Promise<Assessment> {
     if (!assessment.idleTimeout) {
-      const idleTimeout = this.assessmentConfiguration.idleTimeout;
-      assessment.idleTimeout = idleTimeout;
+      assessment.idleTimeout = this.assessmentConfiguration.idleTimeout;
 
       this.loggerService.info(
         AssessmentService.name,
-        `Using default idle timeout ${idleTimeout}`,
+        `Using default idle timeout ${assessment.idleTimeout}`,
       );
     }
     return this.assessmentRepository.save(assessment);

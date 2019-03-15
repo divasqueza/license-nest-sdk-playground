@@ -18,7 +18,7 @@
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:ci": "jest --ci --silent --reporters=jest-junit",
-    "test:ci:cov": "jest --ci --silent --coverageReporters=lcov --coverage"
+    "test:ci:cov": "jest --ci --silent --reporters=jest-junit --coverageReporters=lcov --coverage"
   },
   "dependencies": {
     "@nestjs/common": "^5.4.0",
@@ -58,5 +58,26 @@
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.5.0",
     "tslint": "5.11.0"
+  },
+  "jenkins": {
+    "node": {
+      "docker": {
+        "image": "node:carbon"
+      }
+    },
+    "docker": {
+      "dockerFile": "Dockerfile.jenkins",
+      "registry": "491070403555.dkr.ecr.us-east-1.amazonaws.com",
+      "registryCredentialsId": "ecr:us-east-1:aws"
+    },
+    "helm": {
+      "docker": {
+        "image": "491070403555.dkr.ecr.us-east-1.amazonaws.com/dp-k8-admin:1.0.0"
+      },
+      "bucket": "dp-deployment-artifacts"
+    },
+    "spinnaker": {
+      "webhook": "https://api.spinnaker.greatminds.dev/webhooks/webhook/dp-nestjs-template"
+    }
   }
 }

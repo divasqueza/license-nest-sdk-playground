@@ -77,7 +77,7 @@ $ npm run test:cov
 
 ### Break down into end to end tests
 
-Running end to end tests 
+Running end to end tests
 
 ```
 # e2e tests
@@ -95,7 +95,7 @@ $ npm lint
 
 ## Deployment
 
-TBD
+We use a Helm chart to deploy into Kubernetes see [chart info](./chart/README.md).
 
 ## Versioning
 
@@ -103,10 +103,9 @@ For the versions available, see the [tags on this repository](https://github.com
 
 ## Authors
 
-* *Javier Perez*
-* *Alejandro Naso* 
-* *Gabriel Dominguez* 
-
+- _Javier Perez_
+- _Alejandro Naso_
+- _Gabriel Dominguez_
 
 See also the list of [contributors](https://github.com/greatmindsorg/dp-nestjs-template/contributors) who participated in this project.
 
@@ -116,7 +115,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc

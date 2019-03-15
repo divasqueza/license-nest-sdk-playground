@@ -1,18 +1,5 @@
-@Library('dp-base-pipeline@develop') _
+@Library('dp-base-pipeline@nestjs_pipeline') _
 
-import org.gm.labs.jenkins.libraries.NpmPipeline
+import org.gm.labs.jenkins.libraries.NestJsPipeline
 
-node {
-
-    def buildTask           = 'build'
-    def unitTestTask        = 'test'
-    def integrationTestTask = 'test:integration'
-
-    def npmPipeline = NpmPipeline.Builder(this)
-        .npmBuild(buildTask)
-        .npmTest(unitTestTask)
-       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run
-        .build()
-
-        npmPipeline.execute()
-}
+node { NestJsPipeline.Builder(this).build().execute() }

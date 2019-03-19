@@ -13,3 +13,5 @@ node {
       .npmTest(unitTestingTask)
 
   npmPipeline.execute()
+
+}

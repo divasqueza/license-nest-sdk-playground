@@ -19,7 +19,7 @@ import { AssessmentExceptionFilter } from '../filters/assessment-exception.filte
  */
 @Controller('assessments')
 @UseGuards(InternalAssessmentGuard)
-@UseFilters(new AssessmentExceptionFilter())
+@UseFilters(AssessmentExceptionFilter)
 export class AssessmentController {
   constructor(private readonly assessmentService: AssessmentService) {}
 

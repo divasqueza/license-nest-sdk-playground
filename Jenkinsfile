@@ -9,8 +9,6 @@ node {
 
   def npmPipeline = NpmPipeline.Builder(this)
       .npmBuild(buildTask)    
-      .npmTest(unitTestingTask)
-
   npmPipeline.execute()
 
 }

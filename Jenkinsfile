@@ -8,8 +8,7 @@ node {
   def unitTestingTask   = 'test:unit'
 
   def npmPipeline = NpmPipeline.Builder(this)
-      .npmBuild(buildTask)
-      .npmBuild(lintTask)
+      .npmBuild(buildTask)    
       .npmTest(unitTestingTask)
 
   npmPipeline.execute()

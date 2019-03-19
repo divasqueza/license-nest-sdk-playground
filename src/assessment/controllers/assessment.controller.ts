@@ -1,7 +1,15 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseFilters,
+  UseGuards,
+} from '@nestjs/common';
 import { Assessment } from '../models/assessment.model';
 import { AssessmentService } from '../services/assessment.service';
 import { InternalAssessmentGuard } from '../guards/internal-assessment.guard';
+import { AssessmentExceptionFilter } from '../filters/assessment-exception.filter';
 
 /**
  * Manages the assessments CRUD operations. It only supports/handles internal assessment types.
@@ -11,6 +19,7 @@ import { InternalAssessmentGuard } from '../guards/internal-assessment.guard';
  */
 @Controller('assessments')
 @UseGuards(InternalAssessmentGuard)
+@UseFilters(AssessmentExceptionFilter)
 export class AssessmentController {
   constructor(private readonly assessmentService: AssessmentService) {}
 

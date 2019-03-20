@@ -18,6 +18,6 @@ export class ApplicationConfiguration {
 
   get actuatorEnabled(): boolean {
     const actuatorEnabled = this.configuration.get('ACTUATOR_ENABLED');
-    return !actuatorEnabled || actuatorEnabled === 'true';
+    return actuatorEnabled === 'true';
   }
 }

@@ -1,118 +1,122 @@
+# NESTJS Templating
 
-# NestJS API project template
+The purpose of this repository is to provide a template for all the micro-apps to be developed within Great Minds Digital Platform
 
-Scaffold quickly your next [NestJS](https://nestjs.com/) API project with using this template
+## Getting Started
 
-- Crafted for Docker environments (Dockerfile support and environment variables)
-- REST API with [TypeORM](http://typeorm.io) support 
-- Swagger documentation, [Joi](https://github.com/hapijs/joi) validation, logger, ...
-- Folder structure, code samples and best practices
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-## 1. Getting started
+### Prerequisites
 
-### 1.1 Requirements
+What things you need to install the software and how to install them
 
-Before starting, make sure you have at least those components on your workstation:
+#### Install Node.js on Ubuntu
 
-- An up-to-date release of [NodeJS](https://nodejs.org/) and NPM
-- A database such as MariaDB, MySQL or PostgreSQL
+You can successfully add Node.js PPA to Ubuntu system. Now execute the below command install Node on and Ubuntu using apt-get
 
-[Docker](https://www.docker.com/) may also be useful for advanced testing and image building, although it is not required for development.
+```
+$ sudo apt-get install curl python-software-properties
+$ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+$ sudo apt-get install nodejs
+```
 
-### 1.2 Project configuration
+#### Install Node.js on OSX
+
+Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpacking and installing Node and NPM on your system
+
+```
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ brew install node
+```
+
+#### Install Node.js on Windows
+
+Download latest LTS version from https://nodejs.org/en/download/
+
+### Installing
 
 Start by cloning this project on your workstation.
 
-``` sh
-git clone https://github.com/greatminds/service-template my-project
+```
+$ git clone https://github.com/greatmindsorg/dp-nestjs-template.git
 ```
 
 The next thing will be to install all the dependencies of the project.
 
-```sh
-cd ./my-project
+```
+cd ./dp-nestjs-template
 npm install
 ```
 
-Once the dependencies are installed, you can now configure your project by creating a new `.env` file containing your environment variables used for development.
+## Running the app
 
 ```
-cp .env.example .env
-nano .env
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
 
-For a standard development configuration, you can leave the default values for `API_PORT`, `API_PREFIX` and `API_CORS` under the `Api configuration` section. The `SWAGGER_ENABLE` rule allows you to control the Swagger documentation module for NestJS. Leave it to `1` when starting this example.
+Execute to http://localhost:3000 in your browser
 
-Next comes to the TypeORM configuration: change everything according to your own database setup. It may be also useful to turn `TYPEORM_SYNCHRONIZE` to `true` in order to avoid migrations during the development phase. Do not modify the values in the `TypeORM internals` section, unless you change the folder structure.
+## Running the tests
 
-Last but not least, define a `JWT_SECRET` to sign the JWT tokens or leave the default value in a development environment.
-
-### 1.3 Launch and discover
-
-You are now ready to launch the NestJS application using the command below.
+Running unit test and calculating code coverage
 
 ```
-npm run dev
+# unit tests
+$ npm run test
+
+# test coverage
+$ npm run test:cov
 ```
 
-You can now head to `http://localhost:4000/docs` and see your API Swagger docs. The example teacher API is located at the `http://localhost:4000/api/v2/teachers` endpoint.
+### Break down into end to end tests
 
-## 2. Project structure
+Running end to end tests 
 
-This template was made with a well-defined directory structure.
-
-```sh
-src/
-├── migrations/  # TypeORM migrations created using "npm run migration:create"
-├── modules
-│   ├── app.module.ts
-│   ├── common/  # The common module contains pipes, guards, service and provider used in the whole application
-│   ├── teacher/  # A module example that manages "teacher" resources
-│   │   ├── controller/
-│   │   │   └── teacher.controller.ts
-│   │   ├── flow/  # The "flow" directory contains the pipes, interceptors and everything that may change the request or response flow
-│   │   │   └── teacher.pipe.ts
-│   │   ├── model/
-│   │   │   ├── teacher.data.ts  # The model that will be returned in the response
-│   │   │   ├── teacher.entity.ts  # The actual TypeORM entity
-│   │   │   └── teacher.input.ts  # The model that is used in the request
-│   │   ├── teacher.module.ts
-│   │   ├── service/
-│   │   │   └── teacher.service.ts
-│   │   └── spec/
-│   └── tokens.ts
-└── server.ts
+```
+# e2e tests
+$ npm run test:e2e
 ```
 
-## 3. Default NPM commands
+### And coding style tests
 
-The NPM commands below are already included with this template and can be used to quickly run, build and test your project.
+Linter is a tool that analyzes source code to flag programming errors, bugs, stylistic errors, and suspicious constructs
 
-```sh
-# Start the application using the transpiled NodeJS
-npm run start
-
-# Run the application using "ts-node"
-npm run dev
-
-# Transpile the TypeScript files
-npm run build
-
-# Internal command used during the Docker build stage
-npm run build:docker
-
-# Run the project' functional tests
-npm run test
-
-# Lint the project files using TSLint
-npm run lint
-
-# Create a new migration named MyMigration
-npm run migration:create [MyMigration]
-
-# Run the TypeORM migrations
-npm run migration:run
-
-# Revert the TypeORM migrations
-npm run migration:revert
 ```
+# code style
+$ npm lint
+```
+
+## Deployment
+
+TBD
+
+## Versioning
+
+For the versions available, see the [tags on this repository](https://github.com/greatmindsorg/dp-nestjs-template/tags).
+
+## Authors
+
+* *Javier Perez*
+* *Alejandro Naso* 
+* *Gabriel Dominguez* 
+
+
+See also the list of [contributors](https://github.com/greatmindsorg/dp-nestjs-template/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
+

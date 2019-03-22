@@ -11,7 +11,7 @@ node {
     def npmPipeline = NpmPipeline.Builder(this)
         .npmBuild(buildTask)
         .npmTest(unitTestTask)
-        .npmTest(integrationTestTask)
+       // .npmTest(integrationTestTask)
         .build()
 
         npmPipeline.execute()

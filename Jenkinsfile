@@ -10,8 +10,8 @@ node {
 
     def npmPipeline = NpmPipeline.Builder(this)
         .npmBuild(buildTask)
-       //.npmTest(unitTestTask)  <<--- Disabled due to: Test suite failed to run
-       // .npmTest(integrationTestTask)
+        .npmTest(unitTestTask)
+       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run
         .build()
 
         npmPipeline.execute()

@@ -10,7 +10,7 @@ node {
 
     def npmPipeline = NpmPipeline.Builder(this)
         .npmBuild(buildTask)
-        //.npmTest(unitTestingTask)
+        .npmTest(unitTestingTask)
         //.npmTest(integrationTestTask)
         .build()
 

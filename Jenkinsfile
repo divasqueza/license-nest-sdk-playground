@@ -3,12 +3,16 @@
 import org.gm.labs.jenkins.libraries.NpmPipeline
 
 node {
-  def buildTask         = 'build'
-  def lintTask          = 'lint'
-  def unitTestingTask   = 'test:unit'
 
-  def npmPipeline = NpmPipeline.Builder(this)
-      .npmBuild(buildTask)    
-  npmPipeline.execute()
+    def buildTask         = 'build'
+    def lintTask          = 'lint'
+    def unitTestingTask   = 'test:unit'
 
+    def npmPipeline = NpmPipeline.Builder(this)
+        .npmBuild(buildTask)
+        .npmBuild(lintTask)
+        .npmTest(unitTestingTask)
+        .build()
+
+        npmPipeline.execute()
 }

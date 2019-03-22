@@ -5,7 +5,7 @@ import org.gm.labs.jenkins.libraries.NpmPipeline
 node {
 
     def buildTask           = 'build'
-    def unitTestTask        = 'test:unit'
+    def unitTestTask        = 'test'
     def integrationTestTask = 'test:integration'
 
     def npmPipeline = NpmPipeline.Builder(this)

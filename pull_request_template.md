@@ -2,17 +2,16 @@
 
 ## Description
 
-Please include a summary of the change with relevant information and context. List any dependencies that are required for this change.
+*Please include a summary of the change with relevant information and context. List any dependencies that are required for this change.*
 
 Solves # (issue)
 
 ## Type of change
 
-Please delete options that are not relevant.
-
-- [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] Hot fix (fixes an issue in master branch)
 
 ## Related changes to be checked
 
@@ -22,10 +21,10 @@ Please delete options that are not relevant.
 ## Changes in User Interface
 
 **Before**
-If possible, provide an image that represents the status prior to the modification
+*If possible, provide an image that represents the status prior to the modification, and any relevant comments*
 
 **After**
-If possible, provide an image that represents the status prior to the modification
+*If possible, provide an image that represents the status after the modification, and any relevant comments that explains the changes*
 
 
 ## Checklist:

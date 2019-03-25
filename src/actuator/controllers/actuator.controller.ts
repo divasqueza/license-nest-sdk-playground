@@ -1,7 +1,6 @@
 import { Response } from 'express';
 import { Controller, Get, HttpStatus, Inject, Res } from '@nestjs/common';
 import { Actuator } from '../actuator.interface';
-import * as os from 'os';
 import { TokenProviderLocator } from '../locator/token-provider.locator';
 
 @Controller('actuator')
@@ -28,20 +27,5 @@ export class ActuatorController {
   @Get('info')
   info() {
     return { info: this.actuator.getApplicationInfo() };
-  }
-
-  @Get('metrics')
-  metrics() {
-    return {
-      metrics: {
-        // TODO define metrics to share
-        cpus: os.cpus(),
-        uptime: os.uptime(),
-        mem: {
-          total: os.totalmem(),
-          free: os.freemem(),
-        },
-      },
-    };
   }
 }

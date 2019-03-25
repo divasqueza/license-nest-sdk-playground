@@ -18,6 +18,10 @@ Solves # (issue)
 - [ ] This change requires a documentation update
 - [ ] This change requires a change in architecture documents
 
+## How Has This Been Tested?
+
+*Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration*
+
 ## Changes in User Interface
 
 **Before**
@@ -25,7 +29,6 @@ Solves # (issue)
 
 **After**
 *If possible, provide an image that represents the status after the modification, and any relevant comments that explains the changes*
-
 
 ## Checklist:
 

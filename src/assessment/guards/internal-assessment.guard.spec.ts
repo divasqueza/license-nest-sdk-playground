@@ -5,7 +5,7 @@ import { mock, mockExecutionContext } from '../../../test/util/mock.util';
 describe('InternalAssessmentGuard', () => {
   it('canActivate when the request has a valid user', async () => {
     const assessmentConfigurationMock = mock<AssessmentConfiguration>({
-      allowExternalAssessments: false,
+      freeForAll: false,
     });
 
     const executionContextMock = mockExecutionContext({
@@ -20,9 +20,9 @@ describe('InternalAssessmentGuard', () => {
     expect(executionContextMock.switchToHttp).toHaveBeenCalledTimes(1);
   });
 
-  it('canActivate when the request has no user but external assessments are allowed', async () => {
+  it('canActivate when the request has no user but is free for all', async () => {
     const assessmentConfigurationMock = mock<AssessmentConfiguration>({
-      allowExternalAssessments: true,
+      freeForAll: true,
     });
 
     const executionContextMock = mockExecutionContext({});
@@ -35,9 +35,9 @@ describe('InternalAssessmentGuard', () => {
     expect(executionContextMock.switchToHttp).toHaveBeenCalledTimes(1);
   });
 
-  it('canActivate when the request has no user and external assessments are not allowed', async () => {
+  it('canActivate when the request has no user and is not free for all', async () => {
     const assessmentConfigurationMock = mock<AssessmentConfiguration>({
-      allowExternalAssessments: false,
+      freeForAll: false,
     });
 
     const executionContextMock = mockExecutionContext({});

@@ -22,4 +22,9 @@ export class AssessmentConfiguration {
     );
     return assessmentIdleTimeout ? +assessmentIdleTimeout : 10;
   }
+
+  get freeForAll(): boolean {
+    const freeForAll = this.configuration.get('ASSESSMENT_FREE_FOR_ALL');
+    return !freeForAll || freeForAll === 'true';
+  }
 }

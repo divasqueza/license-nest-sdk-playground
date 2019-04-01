@@ -15,4 +15,9 @@ export class ApplicationConfiguration {
     const port = this.configuration.get('PORT');
     return port ? +port : 3000;
   }
+
+  get actuatorEnabled(): boolean {
+    const actuatorEnabled = this.configuration.get('ACTUATOR_ENABLED');
+    return actuatorEnabled === 'true';
+  }
 }

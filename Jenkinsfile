@@ -1,131 +1,18 @@
-#!/usr/bin/env groovy
+@Library('dp-base-pipeline@develop') _
 
-try {
-  node('linux') {
+import org.gm.labs.jenkins.libraries.NpmPipeline
 
-    def branch            = env.BRANCH_NAME
-    def releaseNotes
+node {
 
-    def appParams = [
-      name                  : 'dp-nestjs-template',
-      buildSdk              : 'nestjs/cli',   //  <<<---- These parameters are for the case where the app is build with different nodejs versions
-      versionSdk            : '8.9.0',        //  <<<----
-      deploymentTag         : 'DEV',
-      type                  : 'zip',
-      artifact              : 'dp-nestjs',
-      repository            : 'git@github.com:greatmindsorg/dp-nestjs-template.git',
-      exportPath            : 'Application',
-      buildArgs             : 'run dev',
-      dependenciesFolder    : 'node_modules'
-    ]
+    def buildTask           = 'build'
+    def unitTestTask        = 'test'
+    def integrationTestTask = 'test:integration'
 
-    def artifactsRepoParams = [
-      repo                  : 'dp-nestjs-dev',
-      artifactId            : 'dp-nestjs',
-      groupId               : 'org.greatminds.dp.nodejs.nestjs'
-    ]
+    def npmPipeline = NpmPipeline.Builder(this)
+        .npmBuild(buildTask)
+        .npmTest(unitTestTask)
+       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run
+        .build()
 
-
-    notifyBuild('STARTED')
-
-    scmInfo = checkoutStage( appParams.name, appParams.repository, branch )
-
-    buildStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
-
-    try {
-
-      unitTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
-      unitTestingStage( appParams.buildSdk, appParams.exportPath, appParams.buildArgs)
-
-    } catch(caughtError) {
-        currentBuild.result = "FAILURE"
-        throw caughtError
-    }
-  }
-}
-catch(caughtError) {
-    currentBuild.result = "FAILURE"
-    throw caughtError
-}
-finally {
-    echo " notifyBuild"
-}
-
-def ansiMessage(message) {
-  ansiColor('xterm') {
-    echo "\u001B[37m ${message} \u001B[0m"
-  }
-}
-
-def checkoutStage( appName, repository, branch) {
-    stage('\u27A1 Checkout') {
-      def scmInfo = checkout(scm)
-      println "SCM: "+scmInfo
-      ansiMessage("\u2713 Checkout DONE")
-      return scmInfo
-    }
-}
-
-
-def buildStage(buildSdk, exportPath, buildArgs) {
-    stage('\u27A1 Build') {
-      sh """
-            cd $WORKSPACE/
-            set -euo pipefail
-            IFS=$'\n\t'
-            npm run dev
-         """
-         ansiMessage("\u2713 Build DONE")
-    }
-}
-
-def unitTestingStage(buildSdk, exportPath, buildsArgs) {
-    stage('\u27A1 Unit Testing') {
-      sh """
-            cd $WORKSPACE/
-            set -o pipefail
-            IFS=$'\n\t'
-            npm run test:unit
-         """
-      ansiMessage("\u2713 Unit Testing DONE")
-    }
-}
-
-def integrationTestingStage(buildSdk, exportPath, buildsArgs) {
-    stage('\u27A1 Integration Testing') {
-      sh """
-            cd $WORKSPACE/
-            set -o pipefail
-            IFS=$'\n\t'
-            npm run test:integration
-         """
-      ansiMessage("\u2713 Integration Testing DONE")
-    }
-}
-
-
-def notifyBuild(String buildStatus = 'STARTED') {
-    buildStatus = buildStatus ?: 'SUCCESSFUL'
-
-    def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
-    def summary = "${subject} (${env.BUILD_URL})"
-    def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-        <p>Console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
-
-    emailext (
-        recipientProviders: [
-          [$class: 'DevelopersRecipientProvider'],
-          [$class: 'CulpritsRecipientProvider'],
-          [$class: 'RequesterRecipientProvider'],
-          [$class: 'FailingTestSuspectsRecipientProvider'],
-          [$class: 'FirstFailingBuildSuspectsRecipientProvider'],
-          [$class: 'UpstreamComitterRecipientProvider']
-        ],
-        attachLog: true,
-        body: details,
-        mimeType: 'text/html',
-        to: 'yanelly.jimenez@greatminds.org',
-        replyTo: env.DEFAULT_REPLYTO,
-        subject: subject
-    )
+        npmPipeline.execute()
 }

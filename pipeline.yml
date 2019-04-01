@@ -1,0 +1,16 @@
+env: develop
+docker:
+  registry: 'node:carbon'
+
+number-test: 10
+
+notification:
+  email:
+    recipients:
+      - dev.nodejs@greatminds.org
+      - qc.nodejs@greatminds.org
+      - support@greatminds.org
+      - digital.platform@greatminds.org
+
+  slack:
+    channel: tech-dp-nest-template

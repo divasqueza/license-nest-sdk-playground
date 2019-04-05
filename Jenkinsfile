@@ -12,7 +12,7 @@ node {
         .npmBuild(buildTask)
         .npmTest(unitTestTask)
        // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run
-        .build()
-
-        npmPipeline.execute()
+        .build()        
+        
+    runInsideDockerImage(,npmPipeline.execute())        
 }

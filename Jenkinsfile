@@ -4,6 +4,7 @@ import org.gm.labs.jenkins.libraries.NpmPipeline
 
 node {
 
+    def dockerImage               = 'carbon-alpine'
     def buildTask           = 'build'
     def unitTestTask        = 'test'
     def integrationTestTask = 'test:integration'
@@ -14,5 +15,5 @@ node {
        // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run
         .build()        
         
-    runInsideDockerImage(,npmPipeline.execute())        
+    runInsideDockerImage( dockerImage, npmPipeline.execute() )        
 }

@@ -17,7 +17,7 @@ node {
         .npmTest(unitTestTask)
        // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run           
         
-    ecr( registry, dockerImage, account, region, npmPipeline..build().execute() )
+    ecr( registry, dockerImage, account, region, npmPipeline.build().execute() )
 
 }
 

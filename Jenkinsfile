@@ -13,7 +13,8 @@ node {
     def npmPipeline = NpmPipeline.Builder(this)
         .npmBuild(buildTask)
         .npmTest(unitTestTask)
-       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run              
+       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run   
+        .build()           
         
-    ecr( dockerImage, npmPipeline.build().execute() )        
+    ecr( registry, dockerImage, npmPipeline.execute() )        
 }

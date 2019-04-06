@@ -12,11 +12,12 @@ node {
     def unitTestTask        = 'test'
     def integrationTestTask = 'test:integration'
 
-    //def npmPipeline = NpmPipeline.Builder(this)
-    //    .npmBuild(buildTask)
-    //    .npmTest(unitTestTask)
-       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run   
-    //    .build()
+    def npmPipeline = NpmPipeline.Builder(this)
+        .npmBuild(buildTask)
+        .npmTest(unitTestTask)
+       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run           
         
-    ecr( registry, dockerImage, account, region, "echo 'Hello World'" )        
+    ecr( registry, dockerImage, account, region, npmPipeline..build().execute() )
+
 }
+

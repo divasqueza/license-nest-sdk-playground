@@ -4,7 +4,8 @@ import org.gm.labs.jenkins.libraries.NpmPipeline
 
 node {
 
-    def dockerImage               = 'carbon-alpine'
+    def registry            = '491070403555.dkr.ecr.us-east-1.amazonaws.com'
+    def dockerImage         = 'carbon-alpine'
     def buildTask           = 'build'
     def unitTestTask        = 'test'
     def integrationTestTask = 'test:integration'
@@ -12,8 +13,7 @@ node {
     def npmPipeline = NpmPipeline.Builder(this)
         .npmBuild(buildTask)
         .npmTest(unitTestTask)
-       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run
-        .build()        
+       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run              
         
-    runInsideDockerImage( dockerImage, npmPipeline.execute() )        
+    ecr( dockerImage, npmPipeline.build().execute() )        
 }

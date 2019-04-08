@@ -1,7 +1,18 @@
 env: develop
-docker:
-  registry: 'node:carbon'
 
+docker:
+  registry: "491070403555.dkr.ecr.us-east-1.amazonaws.com"
+  credentialsId: "ecr:us-east-1:aws"
+  
+spinnaker: 
+  webhook: "https://api.spinnaker.greatminds.dev/webhooks/webhook/dp-nestjs-template"
+  
+helm:
+  image: "491070403555.dkr.ecr.us-east-1.amazonaws.com/dp-k8-admin:1.0.0"
+  
+s3:
+  bucket: "dp-deployment-artifacts"
+  
 number-test: 10
 
 notification:

@@ -54,3 +54,5 @@ Thumbs.db
 
 # test
 junit.xml
+
+*.tgz

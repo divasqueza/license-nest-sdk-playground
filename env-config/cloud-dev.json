@@ -1,8 +1,14 @@
 {
-  "dev": {
+  "dev": {    
+    "artifactId": "nestjs-template",
     "docker": {
       "image": "node:carbon",
-      "tag": "1.0.0-SNAPSHOT"
+      "tag": "1.0.0-SNAPSHOT",
+      "dataStores": {
+        "s3": "my-dev-app-bucket",
+        "pgsql": "fake-data-store"
+      },
+      "appUrl": "nodejs-template"
     }
   }
 }

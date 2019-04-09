@@ -1,8 +1,8 @@
-{
-  "dev": {
+{  
+  "test": {
     "docker": {
       "image": "node:carbon",
-      "tag": "1.0.0-SNAPSHOT"
+      "tag": "1.0.0"
     }
   }
 }

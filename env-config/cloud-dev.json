@@ -1,5 +1,5 @@
 {    
-  "artifactId": "nestjs-template",
+  "artifactId": "dp-nestjs-template",
   "docker": {
     "image": "node:carbon",
     "tag": "image_name:tag_name:version.1.0.0-SNAPSHOT"

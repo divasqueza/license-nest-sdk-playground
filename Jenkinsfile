@@ -1,6 +1,6 @@
 @Library('dp-base-pipeline@DP-309') _
 
-import org.gm.labs.jenkins.libraries.NestJsPipeline
+import org.gm.labs.jenkins.libraries.NpmPipeline
 
 node {
     

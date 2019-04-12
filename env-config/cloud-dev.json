@@ -1,8 +1,16 @@
 {    
+  "environments": [
+      "develop",
+      "test"
+  ],  
   "artifactId": "dp-nestjs-template",
+  "sourceVersion": "1.0.0-SNAPSHOT",
+  "targetVersion": "1.0.0",
   "docker": {
-    "image": "node:carbon",
-    "tag": "image_name:tag_name:version.1.0.0-SNAPSHOT"
+    "sourceImage": "node:carbon",
+    "sourceTag": "image_name:tag_name:version.1.0.0-SNAPSHOT",
+    "targetImage": "node:carbon",
+    "targetTag": "image_name:tag_name:version.1.0.0-SNAPSHOT"
   },  
   "dataStores": {
     "s3": "my-dev-app-bucket",

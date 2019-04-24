@@ -1,5 +1,11 @@
-@Library('dp-base-pipeline@nestjs_pipeline') _
+@Library('dp-base-pipeline@develop') _
 
-import org.gm.labs.jenkins.libraries.NestJsPipeline
+import org.gm.labs.jenkins.libraries.NpmPipeline
 
-node { NestJsPipeline.Builder(this).build().execute() }
+node {
+  NpmPipeline.Builder(this)
+  .npmBuild('build')
+  .npmLint('lint')
+  .npmTest('test:ci:cov')
+  .build().execute()
+}

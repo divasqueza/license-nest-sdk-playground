@@ -18,14 +18,18 @@
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:ci": "jest --ci --silent --reporters=jest-junit",
-    "test:ci:cov": "jest --ci --silent --reporters=jest-junit --coverageReporters=lcov --coverage"
+    "test:ci:cov": "jest --ci --silent --reporters=jest-junit --coverageReporters=lcov --coverage",
+    "clean": "rimraf dist",
+    "husky": "npm run format && npm run lint"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format && npm run lint"
+      "pre-commit": "npm run husky"
     }
   },
   "dependencies": {
+    "@greatminds/dp-configuration-lib": "^1.1.0",
+    "@greatminds/dp-logger-lib": "^1.1.0",
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
     "@types/compression": "0.0.36",
@@ -48,6 +52,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@greatminds/dp-testing-lib": "^1.1.0",
     "@nestjs/testing": "^5.1.0",
     "@types/express": "^4.16.0",
     "@types/jest": "^23.3.1",

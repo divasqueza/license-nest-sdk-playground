@@ -2,10 +2,10 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { AssessmentService } from '../services/assessment.service';
-import { mock } from '../../../test/util/mock.util';
+import { mock } from '@greatminds/dp-testing-lib';
 import { Assessment } from '../models/assessment.model';
 import { InternalAssessmentGuard } from '../../../dist/assessment/guards/internal-assessment.guard';
-import { ConfigurationModule } from '../../configuration/configuration.module';
+import { ConfigurationModule } from '@greatminds/dp-configuration-lib';
 import { AssessmentModule } from '../assessment.module';
 import Mock = jest.Mock;
 import { InvalidAssessmentStatusException } from '../exceptions/invalid-assessment-status.exception';
@@ -31,7 +31,7 @@ describe('AssessmentController - e2e', () => {
 
   beforeAll(async () => {
     const module = await Test.createTestingModule({
-      imports: [ConfigurationModule, AssessmentModule],
+      imports: [ConfigurationModule.forRoot({ useEnvironmental: true }), AssessmentModule],
     })
       .overrideProvider(AssessmentService)
       .useValue(assessmentServiceMock)

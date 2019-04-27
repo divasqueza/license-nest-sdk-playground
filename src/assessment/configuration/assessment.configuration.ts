@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigurationService } from '../../configuration/services/configuration.service';
+import { ConfigurationService, Configurable } from '@greatminds/dp-configuration-lib';
 
 /**
  * This class encapsulates how assessment micro app properties are retrieved and accessed by other modules.
@@ -9,7 +9,7 @@ import { ConfigurationService } from '../../configuration/services/configuration
  */
 @Injectable()
 export class AssessmentConfiguration {
-  constructor(private readonly configuration: ConfigurationService) {}
+  constructor(@Configurable() private readonly configuration: ConfigurationService) {}
 
   get allowExternalAssessments(): boolean {
     // for this example the configuration module only handles strings and environment variables

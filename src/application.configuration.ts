@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigurationService, Configurable } from '@greatminds/dp-configuration-lib';
+import {
+  ConfigurationService,
+  Configurable,
+} from '@greatminds/dp-configuration-lib';
 
 /**
  * It encapsulates the application configuration properties.
@@ -9,7 +12,9 @@ import { ConfigurationService, Configurable } from '@greatminds/dp-configuration
  */
 @Injectable()
 export class ApplicationConfiguration {
-  constructor(@Configurable() private readonly configuration: ConfigurationService) {}
+  constructor(
+    @Configurable() private readonly configuration: ConfigurationService,
+  ) {}
 
   get port(): number {
     const port = this.configuration.get('PORT');

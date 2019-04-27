@@ -31,7 +31,10 @@ describe('AssessmentController - e2e', () => {
 
   beforeAll(async () => {
     const module = await Test.createTestingModule({
-      imports: [ConfigurationModule.forRoot({ useEnvironmental: true }), AssessmentModule],
+      imports: [
+        ConfigurationModule.forRoot({ useEnvironmental: true }),
+        AssessmentModule,
+      ],
     })
       .overrideProvider(AssessmentService)
       .useValue(assessmentServiceMock)

@@ -1,19 +1,12 @@
-@Library('dp-base-pipeline@tests') _
+@Library('dp-base-pipeline@develop') _
 
 import org.gm.labs.jenkins.libraries.NpmPipeline
 
 node {
-    
-    def buildTask           = 'build'
-    def unitTestTask        = 'test'
-    def integrationTestTask = 'test:integration'
-
-    def npmPipeline = NpmPipeline.Builder(this)
-        .npmBuild(buildTask)
-        .npmTest(unitTestTask)
-       // .npmTest(integrationTestTask)  <<--- Disabled due to: Test suite failed to run           
-               
-    npmPipeline.build().execute() 
-
+  NpmPipeline.Builder(this)
+  .npmBuild('build')
+  .npmLint('lint')
+  .npmTest('test:ci:cov')
+  .build().execute()
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "dp-nestjs-template",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Application template containing GM conventions and standards",
   "author": "",
   "license": "MIT",
@@ -20,7 +20,11 @@
     "test:ci": "jest --ci --silent --reporters=jest-junit",
     "test:ci:cov": "jest --ci --silent --reporters=jest-junit --coverageReporters=lcov --coverage",
     "clean": "rimraf dist",
-    "husky": "npm run format && npm run lint"
+    "husky": "npm run format && npm run lint",
+    "bump": "npm version --no-git-tag-version --no-push",
+    "bump:minor": "npm run bump -- minor",
+    "bump:major": "npm run bump -- major",
+    "bump:patch": "npm run bump -- patch"
   },
   "husky": {
     "hooks": {

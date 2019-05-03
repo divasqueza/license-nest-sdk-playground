@@ -1,4 +1,4 @@
-import { mock } from '../../../test/util/mock.util';
+import { mock } from '@greatminds/dp-testing-lib';
 import { Assessment } from '../models/assessment.model';
 import { AssessmentService } from '../services/assessment.service';
 import { AssessmentController } from './assessment.controller';

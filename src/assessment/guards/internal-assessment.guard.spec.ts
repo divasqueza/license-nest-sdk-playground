@@ -1,6 +1,7 @@
 import { InternalAssessmentGuard } from './internal-assessment.guard';
 import { AssessmentConfiguration } from '../configuration/assessment.configuration';
-import { mock, mockExecutionContext } from '../../../test/util/mock.util';
+import { mockExecutionContext } from '../../../test/util/mock.util';
+import { mock } from '@greatminds/dp-testing-lib';
 
 describe('InternalAssessmentGuard', () => {
   it('canActivate when the request has a valid user', async () => {

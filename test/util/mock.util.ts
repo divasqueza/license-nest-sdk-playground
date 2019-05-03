@@ -1,8 +1,5 @@
 import { ExecutionContext } from '@nestjs/common';
-
-const mock =  <T> (options: Partial<T>): T => {
-  return jest.fn(() => options as T)();
-};
+import { mock } from '@greatminds/dp-testing-lib';
 
 const mockExecutionContext = (request?: any, response?: any): ExecutionContext => {
   const httpContextMock = {
@@ -16,6 +13,5 @@ const mockExecutionContext = (request?: any, response?: any): ExecutionContext =
 };
 
 export {
-  mock,
   mockExecutionContext,
 };

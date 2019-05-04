@@ -1,27 +1,27 @@
----
+--- # Please provide all the properties. 
+
 artifact:
-  type: K8S
-  docker:
-    build:
-      image: node:lts
+  id: "dp-nestjs-template"
+  type: "node"  
+  
+  version: 1.0.0-SNAPSHOT 
+                    
 
-
---- # Application Properties which will be taken to generate the Build Package artifact -only- for:
+# Application Properties which will be taken to generate next Build Package artifacts:
 # - NodeJs MicroServices
 # - NodeJs Core Library
-artifact:
-  artifactId: "dp-nestjs-template"
-  deploymentType: "K8S"
 
   # Additional Environment Variables which will be used into a Docker context.
-  environmentVariables: "HOME=."
+  envVars: "HOME=."              
 
-  # Use for the build stages (install, build, lint, etc)
+  # Properties used to generate the Build Artifact through the steps: build, lint, test, package.
   docker:
-    image: node:carbon # The default is carbon (8) to ensure compatibility with AWS Lambda, Kubernetes apps should override this to LTS (10)
+    sourceImage: node:carbon # The default is carbon (8) to ensure compatibility with AWS Lambda, Kubernetes apps should override this to LTS (10)
+    targetImage: node:library
     # For the actual image to be deployed
-    tag: "image_name:tag_name:version.1.0.0-SNAPSHOT"
-
+    sourceTag: "image_name:tag_name:version.1.0.0-SNAPSHOT"
+    targetTag: "image_name:tag_name:version.1.0.0-SNAPSHOT"
+    context: "."    
     # --------------------------------------------------------------------------------
     # TODO. Remove and automate the Docker Build image in the dp-tools-image 
     # due to is UNWANTED build the Docker image each time the Build Job is triggered.
@@ -30,26 +30,35 @@ artifact:
       dockerfile: Dockerfile.jenkins
       context: "."
 
+  nexus:
+    repositoryTarget: nestjs-tmp
+    repositoryApp: fake-repo
+    repositoryGroupId: org.gm.fakes
+    repositoryType: hosted           
+
   # DataStores configuration indicates where the build package artifact should be stored through the CI/CD execution.    
   dataStores:
-    s3: "my-dev-app-bucket",
-    pgsql: "fake-data-store"
+    s3: my-dev-app-bucket
+    pgsql: fake-data-store
+    
+  security:
+    exclusions: "/node_modules"
 
-  # Microservices endpoints per environment which will be called from Test Suites.
-  appUrl: "nodejs-template"
-
-  # Testing Properties
+ # QC. Test Suites Configuration. 
   testing:
-    suiteTestRepo: git@github.com:greatmindsorg/dp-nestjs-automation.git
-    suiteTestSmokeName: SmokeSuite
-    suiteTestRegressionName: RegressionSuite
-    suiteTestBranch: develop
-    filePath: build/release/nestjs-template.zip
+    testSuiteRepository: git@github.com:greatmindsorg/dp-nestjs-automation.git
+    testSuiteBranch: develop
+    testSuitePath: build/release/nestjs-template.zip
+    testSuiteRegression: RegressionSuite
+    testSuiteSmoke: SmokeSuite
     repositoryApp: nestjs-template.zip
     repositoryGroupId: org.gm.ms
     repositoryType: zip
     repositoryRepo: nestjs-template-dev
+   
+  notifications: 
     emailRecipients: support@greatminds.org
+    slackChannel: tech-dp-general
 
 
 

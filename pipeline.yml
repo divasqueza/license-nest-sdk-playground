@@ -1,0 +1,6 @@
+---
+artifact:
+  type: K8S
+  docker:
+    build:
+      image: node:lts

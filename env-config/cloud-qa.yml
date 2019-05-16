@@ -1,18 +1,17 @@
 --- # Please provide all the properties. 
 
 artifact:
-  id: "dp-nestjs-template"
-  type: "node"  
+  id: dp-nestjs
+  name: dp-nestjs-template 
+  type: node
+  version: 1.0.0-SNAPSHOT
   
-  version: 1.0.0-SNAPSHOT 
-                    
-
-# Application Properties which will be taken to generate next Build Package artifacts:
-# - NodeJs MicroServices
-# - NodeJs Core Library
+  # Application Properties which will be taken to generate next Build Package artifacts:
+  # - NodeJs MicroServices
+  # - NodeJs Core Library
 
   # Additional Environment Variables which will be used into a Docker context.
-  envVars: "HOME=."              
+  envVars: "HOME=."
 
   # Properties used to generate the Build Artifact through the steps: build, lint, test, package.
   docker:
@@ -21,7 +20,7 @@ artifact:
     # For the actual image to be deployed
     sourceTag: "image_name:tag_name:version.1.0.0-SNAPSHOT"
     targetTag: "image_name:tag_name:version.1.0.0-SNAPSHOT"
-    context: "."    
+    context: "."
     # --------------------------------------------------------------------------------
     # TODO. Remove and automate the Docker Build image in the dp-tools-image 
     # due to is UNWANTED build the Docker image each time the Build Job is triggered.
@@ -34,17 +33,17 @@ artifact:
     repositoryTarget: nestjs-tmp
     repositoryApp: fake-repo
     repositoryGroupId: org.gm.fakes
-    repositoryType: hosted           
+    repositoryType: hosted
 
   # DataStores configuration indicates where the build package artifact should be stored through the CI/CD execution.    
   dataStores:
     s3: my-dev-app-bucket
     pgsql: fake-data-store
-    
+
   security:
     exclusions: "/node_modules"
 
- # QC. Test Suites Configuration. 
+  # QC. Test Suites Configuration. 
   testing:
     testSuiteRepository: git@github.com:greatmindsorg/dp-nestjs-automation.git
     testSuiteBranch: develop
@@ -55,8 +54,8 @@ artifact:
     repositoryGroupId: org.gm.ms
     repositoryType: zip
     repositoryRepo: nestjs-template-dev
-   
-  notifications: 
+
+  notifications:
     emailRecipients: support@greatminds.org
     slackChannel: tech-dp-general
 

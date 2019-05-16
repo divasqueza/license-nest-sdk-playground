@@ -7,6 +7,8 @@ node {
   .npmBuild('build')
   .npmLint('lint')
   .npmTest('test:ci:cov')
-  .build().execute()
+  .build()
+  
+  .execute()
 }
 

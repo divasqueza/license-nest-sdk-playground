@@ -1,7 +1,6 @@
 --- # Please provide all the properties. 
 
-artifact:
-  id: "dp-nestjs-template"
+artifact:  
   name: "dp-nestjs-template"
   type: NODEJS   
   

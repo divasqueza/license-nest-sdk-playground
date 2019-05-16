@@ -2,6 +2,7 @@
 
 artifact:
   id: "dp-nestjs-template"
+  name: "dp-nestjs-template"
   type: NODEJS   
   
   version: 1.0.0-SNAPSHOT 

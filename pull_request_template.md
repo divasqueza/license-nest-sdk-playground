@@ -12,6 +12,11 @@ Solves # (issue)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] Hot fix (fixes an issue in master branch)
+- [ ] Docs (Documentation only changes)
+- [ ] Style (Changes that do not affect the meaning of the code, formatting, missing semi-colons, etc)
+- [ ] Refactor (Changes that neither fixes a bug or adds a feature)
+- [ ] Performance (Changes that improve performance)
+- [ ] Chore (Changes to the build process or auxiliary tools and libraries)
 
 ## Related changes to be checked
 

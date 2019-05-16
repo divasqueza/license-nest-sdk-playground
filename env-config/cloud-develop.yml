@@ -2,7 +2,7 @@
 
 artifact:  
   name: "dp-nestjs-template"
-  type: NODEJS   
+  type: nodejs   
   
   version: 1.0.0-SNAPSHOT 
                     

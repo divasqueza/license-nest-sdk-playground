@@ -1,6 +1,6 @@
 ---
 artifact:
-  type: nodeje
+  type: nodejs
   docker:
     build:
       image: node:lts

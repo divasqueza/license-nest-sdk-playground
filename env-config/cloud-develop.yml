@@ -45,17 +45,17 @@ artifact:
     exclusions: "/node_modules"
 
   repository:
-    repositoryApp: dp-account-management-serverless.zip
+    repositoryApp: dp-nestjs-template.zip
     repositoryGroupId: org.gm.ms
     repositoryType: zip
-    repositoryRepo: dp-account-management-serverless
+    repositoryRepo: dp-nestjs-template
     
  # QC. Test Suites Configuration. 
 
   testing:
-    repository: git@github.com:greatmindsorg/dp-account-management-serverless-automation.git
+    repository: git@github.com:greatmindsorg/dp-nestjs-template-automation.git
     branch: develop
-    path: build/release/dp-account-management-serverless.zip
+    path: build/release/dp-nestjs-template.zip
     regression: RegressionSuite
     smoke: SmokeSuite
     

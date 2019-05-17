@@ -1,6 +1,6 @@
 {
   "name": "dp-nestjs-template",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Application template containing GM conventions and standards",
   "author": "",
   "license": "MIT",
@@ -18,14 +18,23 @@
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:ci": "jest --ci --silent --reporters=jest-junit",
-    "test:ci:cov": "jest --ci --silent --reporters=jest-junit --coverageReporters=lcov --coverage"
+    "test:ci:cov": "jest --ci --silent --reporters=jest-junit --coverageReporters=lcov --coverage",
+    "clean": "rimraf dist",
+    "husky": "npm run lint && npm run precise-commits",
+    "precise-commits": "precise-commits --check-only \"src/**/*.ts\"",
+    "bump": "npm version --no-git-tag-version --no-push",
+    "bump:minor": "npm run bump -- minor",
+    "bump:major": "npm run bump -- major",
+    "bump:patch": "npm run bump -- patch"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format && npm run lint"
+      "pre-commit": "npm run husky"
     }
   },
   "dependencies": {
+    "@greatminds/dp-configuration-lib": "^1.1.0",
+    "@greatminds/dp-logger-lib": "^1.1.0",
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
     "@types/compression": "0.0.36",
@@ -48,6 +57,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@greatminds/dp-testing-lib": "^1.1.0",
     "@nestjs/testing": "^5.1.0",
     "@types/express": "^4.16.0",
     "@types/jest": "^23.3.1",
@@ -57,6 +67,7 @@
     "jest": "^23.5.0",
     "jest-junit": "^6.3.0",
     "nodemon": "^1.18.3",
+    "precise-commits": "^1.0.2",
     "prettier": "^1.14.2",
     "supertest": "^3.1.0",
     "ts-jest": "^23.1.3",

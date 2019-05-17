@@ -1,8 +1,8 @@
-import { mock } from '../../../test/util/mock.util';
+import { mock } from '@greatminds/dp-testing-lib';
 import { Assessment } from '../models/assessment.model';
 import { AssessmentRepository } from '../repositories/assessment.repository';
 import { AssessmentConfiguration } from '../configuration/assessment.configuration';
-import { ApplicationLoggerService } from '../../logger/services/application-logger.service';
+import { LoggerService } from '@greatminds/dp-logger-lib';
 import { AssessmentService } from './assessment.service';
 
 describe('AssessmentService', () => {
@@ -16,7 +16,7 @@ describe('AssessmentService', () => {
       idleTimeout: 10,
     });
 
-    const loggerServiceMock = mock<ApplicationLoggerService>({
+    const loggerServiceMock = mock<LoggerService>({
       info: jest.fn(),
     });
 
@@ -45,7 +45,7 @@ describe('AssessmentService', () => {
       idleTimeout: 10,
     });
 
-    const loggerServiceMock = mock<ApplicationLoggerService>({
+    const loggerServiceMock = mock<LoggerService>({
       info: jest.fn(),
     });
 

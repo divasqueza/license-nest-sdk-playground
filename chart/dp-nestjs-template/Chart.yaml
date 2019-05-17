@@ -1,5 +1,0 @@
-apiVersion: v1
-version: 0.0.0
-appVersion: 0.0.0
-description: Digital Platform NestJS Template Chart
-name: dp-nestjs-template

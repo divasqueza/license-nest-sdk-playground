@@ -1,5 +1,5 @@
-import { mock } from '../../../test/util/mock.util';
-import { ConfigurationService } from '../../configuration/services/configuration.service';
+import { mock } from '@greatminds/dp-testing-lib';
+import { ConfigurationService } from '@greatminds/dp-configuration-lib';
 import { AssessmentConfiguration } from './assessment.configuration';
 
 describe('AssessmentConfiguration', () => {

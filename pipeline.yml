@@ -1,6 +1,6 @@
 ---
 artifact:
-  type: nodejs
+  type: K8S
   docker:
     build:
       image: node:lts

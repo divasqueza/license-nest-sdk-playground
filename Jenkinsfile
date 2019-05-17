@@ -1,4 +1,4 @@
-@Library('dp-base-pipeline@DP-806') _
+@Library('dp-base-pipeline@dp-806') _
 
 import org.gm.labs.jenkins.libraries.NpmPipeline
 

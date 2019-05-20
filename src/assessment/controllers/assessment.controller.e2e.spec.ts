@@ -66,7 +66,7 @@ describe('AssessmentController - e2e', () => {
         expect(assessment.score).toBe(100);
       });
   });
-  
+
   it(`/GET findAll when not authorized`, async () => {
     (internalAssessmentGuardMock.canActivate as Mock).mockReturnValue(false);
 

@@ -99,7 +99,21 @@ We use a Helm chart to deploy into Kubernetes see [chart info](./chart/README.md
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/greatmindsorg/dp-nestjs-template/tags).
+This project uses the `dp-versioning-lib` tool for package versioning, it follows the
+[Versioning Strategy](https://github.com/greatmindsorg/dp-versioning-lib/blob/develop/docs/versioning.md).
+
+Make sure you follow the guidelines when...,
+
+* Creating a new git repository develop branch.
+* Creating a new release branch
+* Creating a new hotfix branch
+* Releasing a new production version
+ 
+See [Versioning Examples](https://github.com/greatmindsorg/dp-versioning-lib/blob/develop/docs/examples.md)
+
+
+For the production versions available, see the [tags on this repository](https://github.com/greatmindsorg/dp-nestjs-template/tags).
+For all versions, including alpha or release candidate packages, see [npm registry server](https://nexus.greatminds.dev/#browse/browse:npm-private)
 
 ## Authors
 

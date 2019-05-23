@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@greatminds/dp-testing-lib": "^1.1.0",
-    "@greatminds/dp-versioning-lib": "^1.0.0",
+    "@greatminds/dp-versioning-lib": "^1.1.0",
     "@nestjs/testing": "^6.2.0",
     "@types/express": "^4.16.0",
     "@types/jest": "^23.3.1",

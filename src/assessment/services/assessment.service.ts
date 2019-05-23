@@ -1,8 +1,8 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { AssessmentRepository } from '../repositories/assessment.repository';
 import { Assessment } from '../models/assessment.model';
 import { AssessmentConfiguration } from '../configuration/assessment.configuration';
-import { LoggerService } from '@greatminds/dp-logger-lib';
+import { Logger, LoggerService } from '@greatminds/dp-logger-lib';
 
 /**
  * Services just like any other component should be briefly documented explaining its intention, you can some high level
@@ -16,7 +16,7 @@ export class AssessmentService {
   constructor(
     private readonly assessmentRepository: AssessmentRepository,
     private readonly assessmentConfiguration: AssessmentConfiguration,
-    @Inject('LoggerService')
+    @Logger()
     private readonly loggerService: LoggerService,
   ) {}
 

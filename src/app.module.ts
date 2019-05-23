@@ -9,7 +9,9 @@ import { ApplicationActuator } from './applicaton.actuator';
 @Module({
   imports: [
     ConfigurationModule.forRoot({ useEnvironmental: true }),
-    LoggerModule.forRoot({ useSimpleFormat: true }),
+    LoggerModule.forRoot({
+      useSimpleFormat: process.env.NODE_ENV !== 'production',
+    }),
     ActuatorModule.forRoot({ actuatorToken: ApplicationActuator }),
     AssessmentModule,
   ],

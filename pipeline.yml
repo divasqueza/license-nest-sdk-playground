@@ -1,4 +1,7 @@
 ---
+pipeline:
+  version:
+    bump: true
 artifact:
   type: K8S
   docker:

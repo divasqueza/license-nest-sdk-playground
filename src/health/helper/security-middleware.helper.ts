@@ -1,15 +1,13 @@
-import { INestApplication, Injectable } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 import session = require('cookie-session');
 import * as csurf from 'csurf';
-import * as cors from 'cors';
 import * as compression from 'compression';
 import * as helmet from 'helmet';
 
 /**
  * Suggested security and performance settings for micro apps.
  */
-@Injectable()
-export class ApplicationMiddlewareHelper {
+export class SecurityMiddlewareHelper {
   setupMiddlewares(app: INestApplication, options?: any) {
     this.setupWebVulnerabilities(app, options.helmet);
     this.setupSessionManagement(app, options.session);
@@ -68,7 +66,7 @@ export class ApplicationMiddlewareHelper {
    */
   setupCORS(app: INestApplication, options?: any) {
     options = options || {}; // TODO define defaults
-    app.use(cors(options));
+    app.enableCors(options);
   }
 
   /**

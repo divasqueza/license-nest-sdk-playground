@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ApplicationConfiguration } from './application.configuration';
 import { NestLoggerService } from '@greatminds/dp-logger-lib';
-import { ApplicationMiddlewareHelper } from './actuator/helper/application-middleware.helper';
+import { SecurityMiddlewareHelper } from './health/helper/security-middleware.helper';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -10,7 +10,7 @@ async function bootstrap() {
   app.useLogger(app.get(NestLoggerService));
 
   // TODO define application middleware options as needed
-  app.get(ApplicationMiddlewareHelper).setupMiddlewares(app, {});
+  new SecurityMiddlewareHelper().setupMiddlewares(app, {});
 
   await app.listen(app.get(ApplicationConfiguration).port);
 }

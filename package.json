@@ -21,7 +21,7 @@
     "test:ci:cov": "jest --ci --silent --reporters=jest-junit --coverageReporters=lcov --coverage",
     "clean": "rimraf dist",
     "husky": "npm run lint && npm run precise-commits",
-    "precise-commits": "precise-commits --check-only \"src/**/*.ts\"",
+    "precise-commits": "precise-commits --check-only --whitelist=\"src/**/*.ts\"",
     "bump": "bump",
     "bump:fix:ci": "npm run bump -- fix"
   },

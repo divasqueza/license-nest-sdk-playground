@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import {
-  ConfigurationService,
-  Configurable,
-} from '@greatminds/dp-configuration-lib';
+import { ConfigurationService } from '@greatminds/dp-configuration-lib';
+import { Configurable } from '@greatminds/dp-nestjs-configuration-lib';
 
 /**
  * This class encapsulates how assessment micro app properties are retrieved and accessed by other modules.

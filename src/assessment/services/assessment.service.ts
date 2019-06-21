@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { AssessmentRepository } from '../repositories/assessment.repository';
 import { Assessment } from '../models/assessment.model';
 import { AssessmentConfiguration } from '../configuration/assessment.configuration';
-import { Logger, LoggerService } from '@greatminds/dp-logger-lib';
+import { LoggerService } from '@greatminds/dp-logger-lib';
+import { Logger } from '@greatminds/dp-nestjs-logger-lib';
 
 /**
  * Services just like any other component should be briefly documented explaining its intention, you can some high level

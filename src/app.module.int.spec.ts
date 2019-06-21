@@ -1,7 +1,7 @@
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import { ConfigurationModule } from '@greatminds/dp-configuration-lib';
+import { ConfigurationModule } from '@greatminds/dp-nestjs-configuration-lib';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthModule } from './health/health.module';
 import { TerminusOptionsService } from './health/services/terminus-options.service';

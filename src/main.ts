@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ApplicationConfiguration } from './application.configuration';
-import { NestLoggerService } from '@greatminds/dp-logger-lib';
+import { NestLoggerService } from '@greatminds/dp-nestjs-logger-lib';
 import { SecurityMiddlewareHelper } from './health/helper/security-middleware.helper';
 
 async function bootstrap() {

@@ -32,8 +32,10 @@
   },
   "dependencies": {
     "@godaddy/terminus": "^4.1.2",
-    "@greatminds/dp-nestjs-configuration-lib": "^2.2.0-alpha.2",
-    "@greatminds/dp-nestjs-logger-lib": "^2.2.0-alpha.2",
+    "@greatminds/dp-configuration-lib": "^3.0.0",
+    "@greatminds/dp-logger-lib": "^3.0.0",
+    "@greatminds/dp-nestjs-configuration-lib": "^3.0.0",
+    "@greatminds/dp-nestjs-logger-lib": "^3.0.0",
     "@nestjs/common": "^6.2.0",
     "@nestjs/core": "^6.2.0",
     "@nestjs/platform-express": "^6.2.0",
@@ -51,7 +53,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@greatminds/dp-testing-lib": "^2.2.0-alpha.2",
+    "@greatminds/dp-testing-lib": "^3.0.0",
     "@greatminds/dp-versioning-lib": "^1.2.0",
     "@nestjs/testing": "^6.2.0",
     "@types/compression": "0.0.36",

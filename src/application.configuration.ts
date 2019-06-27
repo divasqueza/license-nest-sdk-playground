@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import {
-  ConfigurationService,
-  Configurable,
-} from '@greatminds/dp-configuration-lib';
+import { ConfigurationService } from '@greatminds/dp-configuration-lib';
+import { Configurable } from '@greatminds/dp-nestjs-configuration-lib';
 
 /**
  * It encapsulates the application configuration properties.

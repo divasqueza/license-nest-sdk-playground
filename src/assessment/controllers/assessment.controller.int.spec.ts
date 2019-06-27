@@ -5,7 +5,7 @@ import { AssessmentService } from '../services/assessment.service';
 import { mock } from '@greatminds/dp-testing-lib';
 import { Assessment } from '../models/assessment.model';
 import { InternalAssessmentGuard } from '../guards/internal-assessment.guard';
-import { ConfigurationModule } from '@greatminds/dp-configuration-lib';
+import { ConfigurationModule } from '@greatminds/dp-nestjs-configuration-lib';
 import { AssessmentModule } from '../assessment.module';
 import Mock = jest.Mock;
 import { InvalidAssessmentStatusException } from '../exceptions/invalid-assessment-status.exception';

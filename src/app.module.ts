@@ -1,35 +1,36 @@
-import { Module } from '@nestjs/common';
-import { AssessmentModule } from './assessment/assessment.module';
+import {
+  ContextualLoggerService,
+  LoggerService,
+} from '@greatminds/dp-logger-lib';
 import { ConfigurationModule } from '@greatminds/dp-nestjs-configuration-lib';
-import { LoggerServiceFactory } from '@greatminds/dp-logger-lib';
-import { LoggerModule } from '@greatminds/dp-nestjs-logger-lib';
-import { ApplicationConfiguration } from './application.configuration';
+import { Logger, LoggerModule } from '@greatminds/dp-nestjs-logger-lib';
+import { Module } from '@nestjs/common';
 import { TerminusModule } from '@nestjs/terminus';
+import { ApplicationConfiguration } from './application.configuration';
 import { HealthModule } from './health/health.module';
 import { TerminusOptionsService } from './health/services/terminus-options.service';
 
-const prod = process.env.NODE_ENV === 'production';
-
-const loggerService = LoggerServiceFactory.createLoggerService({
-  useSimpleFormat: !prod,
-});
-
 @Module({
   imports: [
+    ConfigurationModule.forRoot(
+      ApplicationConfiguration.getConfigurationOptions(),
+    ),
     TerminusModule.forRootAsync({
       imports: [HealthModule],
       useExisting: TerminusOptionsService,
     }),
-    ConfigurationModule.forRoot(
-      {
-        useEnvironmental: !prod,
-      },
-      loggerService,
-    ),
-    LoggerModule.forRoot({ useValue: loggerService }),
-    AssessmentModule,
+    LoggerModule.forRoot(ApplicationConfiguration.getLoggerOptions()),
   ],
   controllers: [],
-  providers: [ApplicationConfiguration],
+  providers: [ApplicationConfiguration, LoggerModule, ConfigurationModule],
 })
-export class AppModule {}
+export class AppModule {
+  private readonly log: ContextualLoggerService;
+  constructor(@Logger() logger: LoggerService) {
+    this.log = logger.getLogger('AppModule');
+    this.log.info('Initializing main module');
+  }
+  configure() {
+    this.log.info('Configuring main module');
+  }
+}

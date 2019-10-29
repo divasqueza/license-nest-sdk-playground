@@ -56,3 +56,4 @@ Thumbs.db
 junit.xml
 
 *.tgz
+.env

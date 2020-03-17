@@ -1,10 +1,11 @@
-import * as request from 'supertest';
+import request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { ConfigurationModule } from '@greatminds/dp-nestjs-configuration-lib';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthModule } from './health/health.module';
 import { TerminusOptionsService } from './health/services/terminus-options.service';
+import { API_PREFIX } from './constants/api.constants';
 
 describe('AppModule (integration)', () => {
   let app: INestApplication;
@@ -14,7 +15,9 @@ describe('AppModule (integration)', () => {
       imports: [
         ConfigurationModule.forRoot({ useEnvironmental: true }),
         TerminusModule.forRootAsync({
-          imports: [HealthModule],
+          imports: [
+            HealthModule.forRoot({ healthCheckUrl: `${API_PREFIX}/health` }),
+          ],
           useExisting: TerminusOptionsService,
         }),
       ],
@@ -27,7 +30,7 @@ describe('AppModule (integration)', () => {
   describe('/health', () => {
     it('should return ok', () => {
       return request(app.getHttpServer())
-        .get('/health')
+        .get('/template/health')
         .expect(200)
         .then(response => {
           const data = response.body;

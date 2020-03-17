@@ -1,36 +1,35 @@
-import { LoggerService, LoggerServiceFactory } from '@greatminds/dp-logger-lib';
-import { NestLoggerService } from '@greatminds/dp-nestjs-logger-lib';
 import { NestFactory } from '@nestjs/core';
-import * as dotenv from 'dotenv-safe';
 import { AppModule } from './app.module';
-import { ApplicationConfiguration } from './application.configuration';
-import { SecurityMiddlewareHelper } from './health/helper/security-middleware.helper';
+import { NestLoggerService } from '@greatminds/dp-nestjs-logger-lib';
+import { AppConfiguration } from './configuration/app.configuration';
+import { LoggerService, LoggerServiceFactory } from '@greatminds/dp-logger-lib';
+import { LoggerConfiguration } from './configuration/logger.configuration';
+import { dpEnvironment } from '@greatminds/dp-configuration-lib';
+import { API_PREFIX } from './constants/api.constants';
+
+async function createRootLogger(isProduction: boolean): Promise<LoggerService> {
+  const config = LoggerConfiguration.getLoggerOptions(isProduction);
+  return LoggerServiceFactory.createLoggerService(config.loggerOptions);
+}
 
 async function bootstrap() {
-  dotenv.config({ allowEmptyValues: false });
+  const nodeEnvironment = process.env.NODE_ENV;
 
-  const logger = await createRootLogger();
+  const logger = await createRootLogger(nodeEnvironment === 'production');
   const log = logger.getLogger('Bootstrap');
   log.info('Starting application', {
-    dpEnvironment: process.env.DP_ENV,
-    nodeEnvironment: process.env.NODE_ENV,
+    dpEnvironment: dpEnvironment(),
+    nodeEnvironment,
   });
 
   const nestLogger = new NestLoggerService(logger);
 
   const app = await NestFactory.create(AppModule, { logger: nestLogger });
 
-  new SecurityMiddlewareHelper().setupMiddlewares(app, {});
-
-  await app.listen(app.get(ApplicationConfiguration).port);
+  app.setGlobalPrefix(API_PREFIX);
+  // app.useGlobalFilters(new ExceptionFilter(logger));
+  // app.useGlobalInterceptors(new ApiResponseInterceptor());
+  // SecurityMiddlewareHelper.setupMiddlewares(app, {});
+  await app.listen(app.get(AppConfiguration).port);
 }
-
-async function createRootLogger(): Promise<LoggerService> {
-  const config = ApplicationConfiguration.getLoggerOptions();
-  const loggerFactory = LoggerServiceFactory.createLoggerService(
-    config.loggerOptions,
-  );
-  return loggerFactory;
-}
-
 bootstrap();

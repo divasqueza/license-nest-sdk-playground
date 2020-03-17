@@ -7,6 +7,16 @@
 -->
 Solves [DP-XXXX](https://greatminds.atlassian.net/browse/DP-XXXX)
 
+# Self review
+- [ ] I have reviewed my PR changes and left comments/questions when necessary
+- [ ] I have added a screenshot for the applied changes.
+- [ ] I have followed the style guidelines of this project.
+- [ ] I have ran the formatter locally.
+- [ ] I have added and ran the tests locally.
+- [ ] I have ran the test coverage reports locally.
+- [ ] I have made corresponding changes to the documentation (README and API).
+- [ ] I have tested the application locally.
+
 ## Type of change
 
 <!-- 
@@ -40,14 +50,19 @@ Solves [DP-XXXX](https://greatminds.atlassian.net/browse/DP-XXXX)
  Please also list any relevant details for your test configuration 
 -->
 
-## Checklist
 
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have deleted all the unused code and comments related to this change
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added unit tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published in downstream modules
+# Squash and merge
+Make sure you follow [Angular commit messages guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)
+
+Types
+
+```
+feat: A new feature
+fix: A bug fix
+docs: Documentation only changes
+style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+refactor: A code change that neither fixes a bug nor adds a feature
+perf: A code change that improves performance
+test: Adding missing or correcting existing tests
+chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
+```

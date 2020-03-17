@@ -1,9 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { HealthIndicator } from '@nestjs/terminus';
-
-/* TODO: use @ts-ignore when the is fixed https://github.com/Microsoft/TypeScript/issues/19139 */
-/* tslint:disable-next-line */
-const packageJson = require('../../../package.json');
+import moment from 'moment';
 
 /**
  * Checks if the server is running
@@ -18,6 +15,11 @@ const packageJson = require('../../../package.json');
 export class ServerIndicator extends HealthIndicator {
   public check(key: string) {
     const isHealthy = true;
-    return super.getStatus(key, isHealthy, { version: packageJson.version });
+    const version = process.env.npm_package_version;
+    return super.getStatus(key, isHealthy, {
+      version,
+      utc: moment.utc().format(),
+      local: moment().format(),
+    });
   }
 }

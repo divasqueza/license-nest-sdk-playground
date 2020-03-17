@@ -8,6 +8,8 @@ describe('ServerIndicator', () => {
       expect(returned).hasOwnProperty('server');
       expect(returned.server.status).toEqual('up');
       expect(returned.server.version).toBeDefined();
+      expect(returned.server.utc).toBeDefined();
+      expect(returned.server.local).toBeDefined();
     });
   });
 });

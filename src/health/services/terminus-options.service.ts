@@ -6,13 +6,17 @@ import {
 } from '@nestjs/terminus';
 import { Injectable } from '@nestjs/common';
 import { ServerIndicator } from './server-indicator.service';
+import { HealthOptions } from '../options/health.options';
 
 @Injectable()
 export class TerminusOptionsService implements TerminusOptionsFactory {
-  constructor(private readonly server: ServerIndicator) {}
+  constructor(
+    private readonly server: ServerIndicator,
+    private readonly options: HealthOptions,
+  ) {}
 
   getHealthUrl(): string {
-    return '/health';
+    return this.options.healthCheckUrl || '/health';
   }
 
   getHealthIndicators(): HealthIndicatorFunction[] {

@@ -1,9 +1,0 @@
----
-pipeline:
-  version:
-    bump: true
-artifact:
-  type: nodejs
-  docker:
-    build:
-      image: node:lts

@@ -4,6 +4,7 @@
 dist/*
 !/dist/v4
 !/dist/v5
+bundle/*
 
 /tmp
 /out-tsc
@@ -56,4 +57,3 @@ Thumbs.db
 junit.xml
 
 *.tgz
-.env

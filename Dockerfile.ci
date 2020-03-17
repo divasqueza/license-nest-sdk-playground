@@ -1,0 +1,9 @@
+FROM nexus.greatminds.dev:8989/library/node:12-alpine
+
+# Create app directory
+WORKDIR /usr/src/app
+
+COPY bundle/index.js ./index.js
+
+EXPOSE 3000
+CMD [ "node", "index.js" ]

@@ -18,7 +18,12 @@ const loggerService = LoggerServiceFactory.createLoggerService({
     ConfigurationModule.forRoot(
       {
         secretsManagerSecretIds: isProduction
-          ? [`${dpEnvironment()}-dp-template`] // replace this with your application secret manager key
+          ? [
+              {
+                id: `${dpEnvironment()}-dp-template`, // replace this with your application secret manager key
+                path: `template`, // this is the key for the loaded information
+              },
+            ]
           : undefined,
         useEnvironmental: !isProduction,
       },

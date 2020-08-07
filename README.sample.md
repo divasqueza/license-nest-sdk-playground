@@ -34,7 +34,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-Execute to http://localhost:3000 in your browser
+Execute to http&#x3A;//localhost:3000 in your browser
 
 ## Running the tests
 
@@ -79,10 +79,10 @@ This project uses the `dp-versioning-lib` tool for package versioning, it follow
 
 Make sure you follow the guidelines when...,
 
-* Creating a new git repository develop branch.
-* Creating a new release branch
-* Creating a new hotfix branch
-* Releasing a new production version
+-   Creating a new git repository develop branch.
+-   Creating a new release branch
+-   Creating a new hotfix branch
+-   Releasing a new production version
 
 See [Versioning Examples](https://github.com/greatmindsorg/dp-versioning-lib/blob/develop/docs/examples.md)
 
@@ -91,9 +91,9 @@ For all versions, including alpha or release candidate packages, see [npm regist
 
 ## Authors
 
-* _Javier Perez_
-* _Alejandro Naso_
-* _Gabriel Dominguez_
+-   *Javier Perez*
+-   *Alejandro Naso*
+-   *Gabriel Dominguez*
 
 See also the list of [contributors](https://github.com/greatmindsorg/dp-nestjs-template/contributors) who participated in this project.
 

@@ -32,7 +32,10 @@ const loggerService = LoggerServiceFactory.createLoggerService({
     LoggerModule.forRoot({ useValue: loggerService }),
     TerminusModule.forRootAsync({
       imports: [
-        HealthModule.forRoot({ healthCheckUrl: `${API_PREFIX}/health` }),
+        HealthModule.forRoot({
+          readinessCheckUrl: `${API_PREFIX}/health/readiness`,
+          livenessCheckUrl: `${API_PREFIX}/health/liveness`,
+        }),
       ],
       useExisting: TerminusOptionsService,
     }),

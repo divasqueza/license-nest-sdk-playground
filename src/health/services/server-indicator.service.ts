@@ -16,10 +16,11 @@ export class ServerIndicator extends HealthIndicator {
   public check(key: string) {
     const isHealthy = true;
     const version = process.env.npm_package_version;
-    return super.getStatus(key, isHealthy, {
+    const result = super.getStatus(key, isHealthy, {
       version,
       utc: moment.utc().format(),
       local: moment().format(),
     });
+    return result;
   }
 }

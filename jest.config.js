@@ -9,6 +9,7 @@ module.exports = {
   "transform": {
     "^.+\\.(t)s$": "ts-jest"
   },
+  "cacheDirectory": "../.jest-cache",
   "coverageDirectory": "../coverage",
   "collectCoverageFrom": [
     "**/*.{ts}",

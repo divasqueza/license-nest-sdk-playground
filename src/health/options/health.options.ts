@@ -4,5 +4,6 @@
  * @property {string} healthCheckUrl          - indicates the health check url, default's to /health
  */
 export interface HealthOptions {
-  healthCheckUrl?: string;
+  readinessCheckUrl?: string;
+  livenessCheckUrl?: string;
 }

@@ -6,7 +6,7 @@ describe('HealthModule', () => {
   describe('forRoot', () => {
     it('instantiate health service without crashing', async () => {
       const module = await Test.createTestingModule({
-        imports: [HealthModule.forRoot({ healthCheckUrl: 'any-url' })],
+        imports: [HealthModule.forRoot({ readinessCheckUrl: 'any-url' })],
       }).compile();
 
       expect(module.get(TerminusOptionsService)).toBeDefined();

@@ -1,4 +1,4 @@
-import { HealthCheckError } from '@godaddy/terminus';
+import { HealthCheckError } from '@nestjs/terminus';
 import { Injectable } from '@nestjs/common';
 import { HealthIndicator } from '@nestjs/terminus';
 import loopbench from 'loopbench';

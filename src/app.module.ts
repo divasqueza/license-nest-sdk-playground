@@ -3,10 +3,8 @@ import { dpEnvironment } from '@greatminds/dp-configuration-lib';
 import { LoggerServiceFactory } from '@greatminds/dp-logger-lib';
 import { LoggerModule } from '@greatminds/dp-nestjs-logger-lib';
 import { ConfigurationModule } from '@greatminds/dp-nestjs-configuration-lib';
-import { TerminusModule } from '@nestjs/terminus';
 import { AppConfiguration } from './configuration/app.configuration';
-import { API_PREFIX } from './constants/api.constants';
-import { HealthModule, TerminusOptionsService } from './health';
+import { HealthModule } from './health';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const loggerService = LoggerServiceFactory.createLoggerService({
@@ -30,15 +28,7 @@ const loggerService = LoggerServiceFactory.createLoggerService({
       loggerService,
     ),
     LoggerModule.forRoot({ useValue: loggerService }),
-    TerminusModule.forRootAsync({
-      imports: [
-        HealthModule.forRoot({
-          readinessCheckUrl: `${API_PREFIX}/health/readiness`,
-          livenessCheckUrl: `${API_PREFIX}/health/liveness`,
-        }),
-      ],
-      useExisting: TerminusOptionsService,
-    }),
+    HealthModule,
   ],
   controllers: [],
   providers: [AppConfiguration],

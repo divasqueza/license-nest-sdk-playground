@@ -20,7 +20,7 @@ describe('AppModule (integration)', () => {
     it('should return ok', () => {
       process.env.npm_package_version = 'x.x.x.x';
       return request(app.getHttpServer())
-        .get('/template/health/readiness')
+        .get('/health/readiness')
         .expect(200)
         .then(response => {
           const data = response.body;

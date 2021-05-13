@@ -1,15 +1,15 @@
 import { Test } from '@nestjs/testing';
+import { HealthController } from './controllers/health.controller';
 import { HealthModule } from './health.module';
-import { TerminusOptionsService } from './services/terminus-options.service';
 
 describe('HealthModule', () => {
   describe('forRoot', () => {
     it('instantiate health service without crashing', async () => {
       const module = await Test.createTestingModule({
-        imports: [HealthModule.forRoot({ readinessCheckUrl: 'any-url' })],
+        imports: [HealthModule],
       }).compile();
 
-      expect(module.get(TerminusOptionsService)).toBeDefined();
+      expect(module.get(HealthController)).toBeDefined();
     });
   });
 });

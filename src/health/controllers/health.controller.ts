@@ -4,7 +4,9 @@ import { SystemCPUIndicator } from '../services/cpu-indicator.service';
 import { EventLoopIndicator } from '../services/event-loop-indicator.service';
 import { HeapUsedIndicator } from '../services/heap-indicator.service';
 import { ServerIndicator } from '../services/server-indicator.service';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Health')
 @Controller('health')
 export class HealthController {
   constructor(
@@ -17,12 +19,14 @@ export class HealthController {
 
   @Get('/readiness')
   @HealthCheck()
+  @ApiOperation({ summary: 'Readiness check' })
   healthCheck() {
     return this.health.check([async () => this.server.check('server')]);
   }
 
   @Get('/liveness')
   @HealthCheck()
+  @ApiOperation({ summary: 'Liveness check' })
   livenessCheck() {
     return this.health.check([
       async () => this.eventLoop.check('eventLoop'),

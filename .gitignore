@@ -58,3 +58,6 @@ junit.xml
 
 *.tgz
 .npmrc
+
+# OpenAPI Docs
+/openapi

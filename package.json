@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "build:doc": "redoc-cli bundle --output openapi/api-docs.html openapi/swagger.json",
     "bundle": "ncc build dist/main.js -o bundle",
     "lint-md": "remark .",
     "format-md": "remark . -o",
@@ -25,6 +26,7 @@
     "test:ci:cov": "jest --ci --silent --reporters=jest-html-reporter --coverageReporters=lcov --coverage",
     "clean": "rimraf dist bundle",
     "husky": "npm run lint && npm run precise-commits",
+    "prebuild:doc": "ts-node src/docs/build.ts",
     "precise-commits": "precise-commits --check-only --whitelist=\"src/**/*.ts\"",
     "bump": "bump",
     "bump:fix:ci": "npm run bump -- fix",
@@ -43,9 +45,11 @@
     "@nestjs/common": "^7.5.4",
     "@nestjs/core": "^7.5.4",
     "@nestjs/platform-express": "^7.5.4",
+    "@nestjs/swagger": "^4.8.2",
     "@nestjs/terminus": "^7.0.1",
     "class-transformer": "^0.2.3",
     "loopbench": "^1.2.0",
+    "redoc-cli": "^0.12.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.3"
   },

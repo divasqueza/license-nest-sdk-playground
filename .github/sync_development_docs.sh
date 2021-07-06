@@ -15,5 +15,5 @@ aws s3 sync \
 --delete \
 "$SOURCE_DIR" "s3://${s3b}/${PROJECT}/${SUBPATH}"
 
-printf "\nURL *** https://dp-development-docs.k8s.dev.greatminds.dev/${PROJECT}/${SUBPATH}/settings-docs.html has been published***\n"
+printf "\nURL *** https://dp-development-docs.k8s.dev.greatminds.dev/${PROJECT}/${SUBPATH}/api-docs.html has been published***\n"
 printf "URL *** https://dp-development-docs.k8s.dev.greatminds.dev/${PROJECT}/${SUBPATH}/swagger.json has been published***\n"

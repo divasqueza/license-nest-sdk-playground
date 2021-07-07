@@ -61,3 +61,6 @@ junit.xml
 
 # OpenAPI Docs
 /openapi
+
+# Coverage report 
+test-report.html

@@ -89,6 +89,10 @@ See [Versioning Examples](https://github.com/greatmindsorg/dp-versioning-lib/blo
 For the production versions available, see the [tags on this repository](https://github.com/greatmindsorg/dp-nestjs-template/tags).
 For all versions, including alpha or release candidate packages, see [npm registry server](https://nexus.greatminds.dev/#browse/browse:npm-private)
 
+## API Documentation
+
+Check this page for more details. [API documentation](src/docs/README.md)
+
 ## Authors
 
 -   *Javier Perez*

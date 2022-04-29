@@ -5,6 +5,7 @@ import { LoggerModule } from '@greatminds/dp-nestjs-logger-lib';
 import { ConfigurationModule } from '@greatminds/dp-nestjs-configuration-lib';
 import { AppConfiguration } from './configuration/app.configuration';
 import { HealthModule } from './health';
+import { TestModule } from './test/test.module';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const loggerService = LoggerServiceFactory.createLoggerService({
@@ -29,6 +30,7 @@ const loggerService = LoggerServiceFactory.createLoggerService({
     ),
     LoggerModule.forRoot({ useValue: loggerService }),
     HealthModule,
+    TestModule,
   ],
   controllers: [],
   providers: [AppConfiguration],

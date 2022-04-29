@@ -30,7 +30,8 @@
     "precise-commits": "precise-commits --check-only --whitelist=\"src/**/*.ts\"",
     "bump": "bump",
     "bump:fix:ci": "npm run bump -- fix",
-    "publish:ci": "npm publish"
+    "publish:ci": "npm publish",
+    "reinstall-library": "npm uninstall -S @greatminds/dp-license-nestjs-sdk && npm install -S @greatminds/dp-license-nestjs-sdk"
   },
   "husky": {
     "hooks": {
@@ -39,6 +40,7 @@
   },
   "dependencies": {
     "@greatminds/dp-configuration-lib": "^4.0.0",
+    "@greatminds/dp-license-nestjs-sdk": "^1.7.0-test.0",
     "@greatminds/dp-logger-lib": "^4.0.0",
     "@greatminds/dp-nestjs-configuration-lib": "^4.0.0",
     "@greatminds/dp-nestjs-logger-lib": "^4.0.0",
